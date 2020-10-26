@@ -158,10 +158,6 @@ mongoose
   })
   .then(() => console.log("DB CONNECTION SUCCESSFUL 🔥"));
 
-app.get("/", (req, res) => {
-  res.sendFile(process.cwd() + "/dist/client/index.html");
-});
-
 app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/users", userRouter);
 // app.all("*", (req, res, next) => {
@@ -170,6 +166,9 @@ app.use("/api/v1/users", userRouter);
 //   // err.statusCode = 404;
 //   res.redirect("/");
 // });
+app.get("/", (req, res) => {
+  res.sendFile(process.cwd() + "/dist/client/index.html");
+});
 
 const port = process.env.PORT || 3000;
 
