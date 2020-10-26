@@ -1,0 +1,27 @@
+img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+}
+
+.main__card {
+  text-align: center;
+  padding: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.user__info {
+  padding: 5%;
+}
+
+@media only screen and (max-width: 426px) {
+  .main__card {
+    flex-direction: column;
+  }
+  img {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,52 @@
+<div class="card shadow" style="padding: 5%; margin: 5%; text-align: center;">
+    <h1 style="text-align: center;">Register</h1>
+    <form (submit)="FormSubmit($event)">
+        <div>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+              <input matInput name="name" type="text" #name [(ngModel)]="user.name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Email address</mat-label>
+              <input matInput name="email" type="email" #email placeholder="abc@example.com"  [(ngModel)]="user.email">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+              <input matInput  name="password" type="password" #pass placeholder="*********" [(ngModel)]="user.password">
+             
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Password Confirm</mat-label>
+              <input matInput  name="passwordConfirm" type="password" #passconf placeholder="*********" [(ngModel)]="user.passwordConfirm">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+              <input matInput  name="phone" type="tel" #nu [(ngModel)]="user.phone">
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button type="submit" color="primary" [disabled]="name.value == '' || email.value == '' || pass.value == '' || passconf.value == '' || nu.value == '' || pass.value !== passconf.value || pass.value.length < 8" >Submit</button>
+           </div>
+      </form>
+
+      <div *ngIf="pass.value !== passconf.value">
+        Password Don't match
+      </div>
+
+      <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+        {{errorMsg}}
+      </div>
+    
+      <div>
+          <small>Already a Member? <a [routerLink]="['/login']">Login</a></small>
+      </div>
+    
+</div>

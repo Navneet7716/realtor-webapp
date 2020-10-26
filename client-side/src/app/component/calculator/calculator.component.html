@@ -1,0 +1,74 @@
+<div class="card main__form__div animate__animated animate__fadeInUpBig">
+
+    <div class="card emiform shadow">
+        <div class="emiformHeading">
+            <h1>EMI Calculator for Home Loan</h1>
+        </div>
+        <form> 
+            <div>
+                <mat-form-field>
+                    <mat-label>Home Loan Amount</mat-label>
+                       <input name="homeloanamount" type="number" #home matInput [(ngModel)]="homeLoanAmount">
+                   </mat-form-field>
+            </div>
+           <div>
+            <mat-form-field>
+                <mat-label>Interest Rate</mat-label>
+                   <input name="interestRate" type="number" matInput [(ngModel)]="interestRate">
+               </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field>
+                <mat-label>Loan Tenure</mat-label>
+                   <input name="loanTenure" type="number" matInput [(ngModel)]="loanTenure">
+               </mat-form-field>
+           </div>
+           <div>
+            <button mat-raised-button type="submit" color="warn" (click)="CalculteEmi()" [disabled]="home.value == 0" >Submit</button>
+           </div>
+            
+        </form>
+    </div>
+    <div class="card shadow chartEmi">
+        <div class="emiformHeading">
+            <h1>Chart</h1>
+        </div>
+      <div class="chart">
+        <div style="display: block;">
+            <canvas baseChart
+                    [data]="pieChartData"
+                    [labels]="pieChartLabels"
+                    [chartType]="pieChartType" ></canvas>
+          </div>
+
+          <div style="padding: 2%; margin-top: 100px;">
+            <div>
+                <mat-form-field>
+                    <mat-label>₹ EMI (Per Month)</mat-label>
+                       <input name="emi" type="number" matInput [(ngModel)]="emi" readonly>
+                   </mat-form-field>
+            </div>
+              <div>
+                <mat-form-field>
+                    <mat-label>₹ Total Interest Payable</mat-label>
+                       <input name="totalInterest" type="number" matInput [(ngModel)]="totalInterest" readonly>
+                   </mat-form-field>
+            </div>
+              <div>
+                <mat-form-field>
+                    <mat-label>₹ Total Payable Amount</mat-label>
+                       <input name="payableamount" type="number" matInput [(ngModel)]="payableamount" readonly>
+                   </mat-form-field>
+            </div>
+          </div>
+         
+          
+
+      </div>
+    </div>
+
+
+    
+   
+</div>
+ 

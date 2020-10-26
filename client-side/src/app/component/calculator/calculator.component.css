@@ -1,0 +1,54 @@
+.emiform {
+  padding: 5%;
+  height: 400px;
+  width: 400px;
+  margin: 5%;
+  text-align: center;
+  flex: 1;
+}
+.chartEmi {
+  height: 600px;
+  width: 400px;
+  margin: 5%;
+  text-align: center;
+  flex: 1;
+}
+
+.emiformHeading {
+  margin: 2%;
+  font-family: "Times New Roman", Times, serif;
+  color: gray;
+  text-align: center;
+}
+
+form {
+  padding: 4%;
+}
+
+.main__form__div {
+  padding: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 991px) {
+  .main__form__div {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 482px) {
+  .chartEmi {
+    height: 600px;
+    width: 280px;
+  }
+  .emiform {
+    height: 400px;
+    width: 280px;
+  }
+
+  .main__form__div {
+    padding: 2%;
+  }
+}

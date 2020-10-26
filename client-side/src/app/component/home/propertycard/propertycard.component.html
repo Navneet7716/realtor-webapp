@@ -1,0 +1,23 @@
+
+<div class="home__container">
+    <div *ngFor="let item of parentData">
+    <mat-card class="example-detail-card">
+        <mat-card-header>
+          <mat-card-title>{{ item.name }}</mat-card-title>
+          <mat-card-subtitle>{{item.address }} </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{imgurl}}{{ item.coverImage }}"  alt="{{ item.name }}">
+        <mat-card-content>
+          <p>
+            {{ item.description.slice(0, 140)}}<span>... (Click on details to view more)</span>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button routerLink="/home/{{ item.slug }}" >Detail</button>
+          <button mat-button>Starting Price ₹ {{item.price / 10000000}} Cr.</button>
+        </mat-card-actions>
+      </mat-card>
+      </div>
+</div>
+
+

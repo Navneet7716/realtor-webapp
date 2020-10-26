@@ -1,0 +1,10 @@
+.match-parent {
+  height: 500px;
+}
+
+@media only screen and (max-width: 554px) {
+  .match-parent {
+    height: 300px;
+    width: 100%;
+  }
+}

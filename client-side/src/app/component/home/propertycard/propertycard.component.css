@@ -1,0 +1,21 @@
+.example-detail-card {
+  /* min-height: 374px; */
+  max-height: 600px;
+  /* min-width: 342px; */
+  max-width: 374px;
+  flex: 1;
+  /* flex-basis: 27%; */
+  margin-bottom: 3%;
+}
+
+.home__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 360px) {
+  .example-detail-card {
+    width: 300px;
+  }
+}

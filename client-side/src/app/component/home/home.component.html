@@ -1,0 +1,20 @@
+
+<mat-progress-bar
+mode="query"
+*ngIf="showSpinner"
+color="accent"
+></mat-progress-bar>
+<div class="card shadow mt-2">
+    
+    <h1 style="text-align: center; margin: 20px; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:35px;">“Where Dreams Come Home”</h1>
+</div>
+
+<app-slideshow></app-slideshow>
+<div class="card shadow">
+    <div class="card shadow m-3">
+        <h1 style="text-align: center; margin: 20px; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:35px; text-decoration: underline; text-decoration-color: gray; margin-bottom: 40px;">“Featured new projects”</h1>
+    </div>
+    
+
+<app-propertycard [parentData]="properties"></app-propertycard>
+</div>

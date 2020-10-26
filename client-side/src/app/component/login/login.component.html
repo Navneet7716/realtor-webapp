@@ -1,0 +1,30 @@
+<div class="card shadow" style="padding: 5%; margin: 5%; text-align: center;">
+    <h1 style="text-align: center;">Login</h1>
+    <form (submit)="FormSubmit($event)">
+        <div>
+            <mat-form-field>
+                <mat-label>Email address</mat-label>
+              <input matInput name="email" #email type="email" placeholder="abc@example.com"  [(ngModel)]="user.email">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+              <input matInput  name="password" #password type="password" placeholder="*********" [(ngModel)]="user.password">
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button type="submit" color="primary" [disabled]="email.value == '' || password.value == ''">Submit</button>
+           </div>
+      </form>
+    
+      <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+        {{errorMsg}}
+      </div>
+
+      
+      <div>
+        <small>Don't have an account? <a [routerLink]="['/register']">Register</a></small>
+    </div>
+    
+</div>
