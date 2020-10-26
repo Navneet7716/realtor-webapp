@@ -160,12 +160,12 @@ mongoose
 
 app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/users", userRouter);
-app.all("*", (req, res, next) => {
-  // const err = new Error();
-  // err.status = 'fail';
-  // err.statusCode = 404;
-  res.redirect("/");
-});
+// app.all("*", (req, res, next) => {
+//   // const err = new Error();
+//   // err.status = 'fail';
+//   // err.statusCode = 404;
+//   res.redirect("/");
+// });
 
 const port = process.env.PORT || 3000;
 
