@@ -33,7 +33,7 @@ const DB = process.env.DATABASE.replace(
 
 app.use(cors());
 app.use(compression());
-app.use(express.static("./dist/client"));
+app.use(express.static(process.cwd() + "/dist/client/"));
 
 csp.extend(app, {
   policy: {
@@ -157,6 +157,10 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("DB CONNECTION SUCCESSFUL 🔥"));
+
+app.get("/", (req, res) => {
+  res.sendFile(process.cwd() + "/dist/client/index.html");
+});
 
 app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/users", userRouter);
