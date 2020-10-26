@@ -33,7 +33,7 @@ const DB = process.env.DATABASE.replace(
 
 app.use(cors());
 app.use(compression());
-app.use(express.static("./client/dist/client"));
+app.use(express.static("./dist/client"));
 
 csp.extend(app, {
   policy: {
