@@ -50,6 +50,9 @@ csp.extend(app, {
         "https://api.mapbox.com",
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
+        "https://cdnjs.cloudflare.com",
+        "https://cdn.jsdelivr.net/",
+        "https://code.jquery.com",
       ],
       "worker-src": [
         "self",
