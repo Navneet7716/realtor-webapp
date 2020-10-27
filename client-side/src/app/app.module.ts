@@ -19,6 +19,9 @@ import { ChartsModule } from 'ng2-charts';
 
 
 // MATERIAL IMPORTS
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -69,7 +72,9 @@ import { AboutComponent } from './component/about/about.component';
     MatInputModule,
     MatSliderModule,
     MatFormFieldModule,
-    ChartsModule
+    ChartsModule,
+    MatSidenavModule,
+    MatProgressBarModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

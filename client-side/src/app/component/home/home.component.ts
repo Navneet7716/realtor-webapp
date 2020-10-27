@@ -15,9 +15,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.service.getAllProperties().subscribe(el => this.properties = el.data)
-
-    this.properties.subscribe(() => (this.showSpinner = false));
+    this.service.getAllProperties().subscribe(el => {
+      this.properties = el.data
+      if (this.properties.length > 0) {
+        this.showSpinner = false
+      }
+    })
   }
 
 }

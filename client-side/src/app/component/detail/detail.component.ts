@@ -22,9 +22,11 @@ export class DetailComponent implements OnInit {
     this.slug = this.route.snapshot.params['slug'];
     this.service.getOneProperty(this.slug).subscribe(el => {
       this.propertyData = el.data[0]
+      if (this.propertyData != undefined || this.propertyData != null) {
+        this.showSpinner = false
+      }
     })
 
-    this.propertyData.subscribe(() => (this.showSpinner = false));
 
   }
 

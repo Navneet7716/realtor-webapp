@@ -12,11 +12,17 @@ export class ProfileComponent implements OnInit {
   user: any
 
   imgurl: string = "../../../assets/images/users/"
+
+  showSpinner: boolean = true
   constructor(private service: UserService) { }
 
   ngOnInit(): void {
 
-    this.service.getAUser().subscribe(el => { this.user = el.data; console.log(el.data) })
+    this.service.getAUser().subscribe(el => {
+      this.user = el.data; if (this.user != undefined || this.user != null) {
+        this.showSpinner = false
+      }
+    })
 
 
   }
