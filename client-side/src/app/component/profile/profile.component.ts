@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service"
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   imgurl: string = "../../../assets/images/users/"
 
   showSpinner: boolean = true
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -22,6 +22,11 @@ export class ProfileComponent implements OnInit {
       this.user = el.data; if (this.user != undefined || this.user != null) {
         this.showSpinner = false
       }
+    }, err => {
+      this.service.deleteToken()
+
+      alert(err.error.message)
+      this.router.navigateByUrl('/login')
     })
 
 

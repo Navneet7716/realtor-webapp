@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
     phone: 91,
     name: ''
   };
+  showSpinner
 
   errorMsg: string
   constructor(public service: UserService, private router: Router) { }
@@ -26,9 +27,11 @@ export class RegisterComponent implements OnInit {
 
   FormSubmit(e) {
     e.preventDefault();
+    this.showSpinner = true
     this.service.register(this.user).subscribe(
       (el) => {
         this.service.setToken(el['token']);
+        this.showSpinner = false
         if (el['status'] === 200 || el['status'] === 'success') {
           this.router.navigate(['/profile']);
         }

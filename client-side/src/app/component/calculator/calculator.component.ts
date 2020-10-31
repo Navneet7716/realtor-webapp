@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../../services/user.service"
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-calculator',
@@ -24,17 +26,28 @@ export class CalculatorComponent implements OnInit {
 
   payableamount: number
   totalInterest: number = 0
-
-
+  user
+  showSpinner
   emi: number;
   public pieChartLabels = ['Principle Loan Amount', 'Total Interest'];
   public pieChartData = [this.homeLoanAmount, this.totalInterest];
   public pieChartType = 'pie';
 
 
-  constructor() { }
+  constructor(public service: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.service.getAUser().subscribe(el => {
+      this.user = el.data; if (this.user != undefined || this.user != null) {
+        this.showSpinner = false
+      }
+    }, err => {
+      this.service.deleteToken()
+
+      alert(err.error.message)
+      this.router.navigateByUrl('/login')
+    })
+
   }
 
   CalculteEmi() {
