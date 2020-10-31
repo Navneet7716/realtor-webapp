@@ -39,7 +39,12 @@ csp.extend(app, {
   policy: {
     directives: {
       "default-src": ["self"],
-      "style-src": ["self", "unsafe-inline", "https:"],
+      "style-src": [
+        "self",
+        "unsafe-inline",
+        "https://stackpath.bootstrapcdn.com/",
+        "https://maxcdn.bootstrapcdn.com/",
+      ],
       "font-src": ["self", "https://fonts.gstatic.com"],
       "script-src": [
         "self",
@@ -53,7 +58,6 @@ csp.extend(app, {
         "http://localhost:3000",
         "https://cdn.jsdelivr.net/",
         "https://code.jquery.com",
-        "https://stackpath.bootstrapcdn.com/",
       ],
       "worker-src": [
         "self",
