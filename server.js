@@ -53,6 +53,7 @@ csp.extend(app, {
         "http://localhost:3000",
         "https://cdn.jsdelivr.net/",
         "https://code.jquery.com",
+        "https://stackpath.bootstrapcdn.com/",
       ],
       "worker-src": [
         "self",
@@ -63,6 +64,7 @@ csp.extend(app, {
         "https://api.mapbox.com",
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
       ],
       "frame-src": [
         "self",
@@ -72,6 +74,7 @@ csp.extend(app, {
         "https://js.stripe.com",
         "https://api.mapbox.com",
         "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
       ],
       "img-src": [
         "self",
@@ -82,6 +85,7 @@ csp.extend(app, {
         "https://api.mapbox.com",
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
       ],
       "connect-src": [
         "self",
@@ -92,6 +96,7 @@ csp.extend(app, {
         "https://events.mapbox.com",
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
       ],
     },
   },
@@ -169,7 +174,7 @@ app.use("/api/v1/users", userRouter);
 //   // err.statusCode = 404;
 //   res.redirect("/");
 // });
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(process.cwd() + "/dist/client/index.html");
 });
 

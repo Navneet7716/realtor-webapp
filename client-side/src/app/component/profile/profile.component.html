@@ -11,8 +11,9 @@
     <h1>Name: {{user.name}}</h1>
     <h1>Email: {{user.email}}</h1>
     <h1>Phone: {{user.phone}}</h1>
-</div>
-   
+    <button mat-raised-button color="primary" [routerLink]="['/updateProfile']" style="margin: 2%;" >Update User Info</button>
+    <button mat-raised-button color="warn" [routerLink]="['/updatePassword']" >Update User Password</button>
+</div> 
 
 
 </div>

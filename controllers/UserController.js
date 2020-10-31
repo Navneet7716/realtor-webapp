@@ -67,6 +67,7 @@ exports.updateUserData = async (req, res, next) => {
       {
         name: req.body.name,
         email: req.body.email,
+        phone: req.body.phone,
       },
       {
         new: true,

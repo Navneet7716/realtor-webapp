@@ -39,6 +39,10 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
 import { AboutComponent } from './component/about/about.component';
+import { UpdateuserComponent } from './component/updateuser/updateuser.component';
+import { UpdatepasswordComponent } from './component/updatepassword/updatepassword.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
 
 
 @NgModule({
@@ -57,6 +61,10 @@ import { AboutComponent } from './component/about/about.component';
     RegisterComponent,
     ProfileComponent,
     AboutComponent,
+    UpdateuserComponent,
+    UpdatepasswordComponent,
+    ForgotPasswordComponent,
+    ResetpasswordComponent,
 
   ],
   imports: [

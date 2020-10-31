@@ -141,7 +141,6 @@ exports.restrictTo = (...roles) => {
 
 exports.forgotPassword = async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-
   if (!user) {
     res.status(404).json({
       status: "Error",
@@ -156,9 +155,16 @@ exports.forgotPassword = async (req, res, next) => {
   try {
     const resetUrl = `${req.protocol}://${req.get(
       "host"
-    )}/api/v1/users/resetPassword/${resetToken}`;
+    )}/resetPassword/${resetToken}`;
+
+    // const resetUrl = `http://localhost:4200/resetPassword/${resetToken}`;
 
     await new Email(user, resetUrl).sendPasswordReset();
+
+    res.status(200).json({
+      status: "success",
+      message: "Email Sent!!",
+    });
   } catch (err) {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;

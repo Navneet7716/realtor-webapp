@@ -57,6 +57,21 @@ export class UserService {
   }
 
 
+  updateUser(user): any {
+    return this.http.post('/api/v1/users/updateMe', user);
+  }
+
+  updatePassword(user): any {
+    return this.http.patch('/api/v1/users/updateMyPassword', user)
+  }
+
+  forgotPassword(email): any {
+    return this.http.post("/api/v1/users/forgotPassword", { email: email }, this.noAuthHeader)
+  }
+
+  resetPassword(user, token): any {
+    return this.http.patch(`/api/v1/users/resetPassword/${token}`, { password: user.password, passwordConfirm: user.passwordConfirm }, this.noAuthHeader)
+  }
 
 
 
