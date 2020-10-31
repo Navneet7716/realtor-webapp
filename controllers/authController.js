@@ -153,9 +153,7 @@ exports.forgotPassword = async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   try {
-    const resetUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/resetPassword/${resetToken}`;
+    const resetUrl = `https://redwood-realtor.herokuapp.com/resetPassword/${resetToken}`;
 
     // const resetUrl = `http://localhost:4200/resetPassword/${resetToken}`;
 
