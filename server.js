@@ -174,10 +174,10 @@ app.use("/api/v1/users", userRouter);
 //   // err.statusCode = 404;
 //   res.redirect("/");
 // });
-app.get("*", (req, res) => {
+app.use("*", (req, res) => {
   res.sendFile(process.cwd() + "/dist/client/index.html");
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`Server Started at ${port}`));
