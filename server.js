@@ -168,13 +168,8 @@ mongoose
 
 app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/users", userRouter);
-// app.all("*", (req, res, next) => {
-//   // const err = new Error();
-//   // err.status = 'fail';
-//   // err.statusCode = 404;
-//   res.redirect("/");
-// });
-app.use("/*", (req, res) => {
+
+app.get("/*", async (req, res) => {
   res.sendFile(process.cwd() + "/dist/client/index.html");
 });
 
