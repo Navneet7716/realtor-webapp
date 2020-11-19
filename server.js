@@ -174,7 +174,7 @@ app.use("/api/v1/users", userRouter);
 //   // err.statusCode = 404;
 //   res.redirect("/");
 // });
-app.use("*", (req, res) => {
+app.use("/*", (req, res) => {
   res.sendFile(process.cwd() + "/dist/client/index.html");
 });
 

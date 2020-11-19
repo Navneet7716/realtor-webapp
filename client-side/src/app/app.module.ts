@@ -16,8 +16,6 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 
 import { ChartsModule } from 'ng2-charts';
 
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
 
 
 // MATERIAL IMPORTS
@@ -90,7 +88,7 @@ import { ResetpasswordComponent } from './component/resetpassword/resetpassword.
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }, { provide: LocationStrategy, useClass: HashLocationStrategy }, PropertyService, AuthGuard, UserService],
+  }, PropertyService, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
