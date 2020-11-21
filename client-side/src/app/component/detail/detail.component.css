@@ -5,6 +5,10 @@
   margin-bottom: 5%;
 }
 
+.main__detail_card {
+  min-height: 1000px;
+}
+
 .detail-card {
   max-height: 400px;
 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow mb-3">
     <a class="navbar-brand navbar___brand" [routerLink]="['/home']">RedWood Realtors</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,6 +16,9 @@
         </li>
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
           <a class="nav-link" mat-button [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
+        </li>
+        <li class="nav-item" *ngIf="this.service.isLoggedin()">
+          <a class="nav-link" mat-button [routerLink]="['/search']" routerLinkActive="active">Search</a>
         </li>
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
           <a class="nav-link" mat-button [routerLink]="['/logout']" routerLinkActive="active" tabindex="-1" (click)="Logout()">Logout</a>

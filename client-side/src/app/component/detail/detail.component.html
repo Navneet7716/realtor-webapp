@@ -1,7 +1,9 @@
 <div>
     <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
 </div>
-<div class="card shadow mt-3 animate__animated animate__fadeInUpBig" *ngIf="propertyData" style="padding: 5%;">
+<div class="card shadow mt-3 main__detail_card" style="padding: 5%;">
+
+<div *ngIf="propertyData">
     
 <h1 style="text-align: center;font-style: italic;">"<span style="text-decoration: underline;">{{propertyData.name}}</span>"</h1>
 <!-- 
@@ -11,13 +13,13 @@
     </div>
 </div> -->
 
-<div class="container2 animate__animated animate__fadeInUpBig" > 
+<div class="container2" > 
     <img *ngFor="let item of propertyData.images" src="../../../assets/images/property/{{item}}" class="detail-card ">
 </div>
 
 
 
-<div class="card shadow animate__animated animate__fadeInUpBig" style="text-align: center;padding: 2%; margin: 2%">
+<div class="card shadow" style="text-align: center;padding: 2%; margin: 2%">
     <h1 style="text-align: center; padding: 2%;">Description</h1>
     <article>
         {{propertyData.description}}
@@ -33,18 +35,20 @@
     </article>
 </div>
 
-    <div class="card shadow animate__animated animate__fadeInUpBig mt-3">
-        <h1 style="text-align: center;padding: 2%;">Location</h1>
+    <div class="card shadow mt-3">
+        <h1 style="text-align: center;padding: 2%;">Address: {{ propertyData.address }}</h1>
+        <h1 style="text-align: center;">Location</h1>
+        
     </div>
-    <div class="card animate__animated animate__fadeInUpBig shadow mt-3 map">
+    <div class="card shadow mt-3 map">
         <app-map [parentData]="propertyData.location.coordinates"></app-map>
     </div>
 
-    <div class="card animate__animated animate__fadeInUpBig shadow" style="padding: 2%; text-align: center; margin: 2%;">
+    <div class="card shadow" style="padding: 2%; text-align: center; margin: 2%;">
         <h1>List of dealers to contact</h1>   
        </div>
        
-       <div class="container2 animate__animated animate__fadeInUpBig"> 
+       <div class="container2"> 
            
            <div *ngFor="let item of propertyData.dealers" class="card mb-3 dealer-detail-card ">
                <div >
@@ -62,7 +66,7 @@
                </div>
              </div>
        </div>
-
+</div>
 </div>
 
 

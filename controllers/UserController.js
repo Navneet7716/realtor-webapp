@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Email = require("../utils/email");
 
 exports.getAllUsers = async (req, res, next) => {
   try {

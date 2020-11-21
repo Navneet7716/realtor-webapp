@@ -43,6 +43,8 @@ import { UpdateuserComponent } from './component/updateuser/updateuser.component
 import { UpdatepasswordComponent } from './component/updatepassword/updatepassword.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -82,7 +84,8 @@ import { ResetpasswordComponent } from './component/resetpassword/resetpassword.
     MatFormFieldModule,
     ChartsModule,
     MatSidenavModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

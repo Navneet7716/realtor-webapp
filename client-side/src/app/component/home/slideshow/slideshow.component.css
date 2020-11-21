@@ -2,3 +2,21 @@
   font-family: "Raleway", sans-serif;
   font-size: xx-large;
 }
+
+.main__slideshow {
+  height: 500px;
+  width: 930px;
+}
+
+@media only screen and (max-width: 554px) {
+  .main__slideshow {
+    height: 300px;
+    width: 130px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .main__slideshow {
+    height: 200px;
+    width: 130px;
+  }
+}

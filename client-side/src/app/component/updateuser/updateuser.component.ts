@@ -13,12 +13,13 @@ export class UpdateuserComponent implements OnInit {
   public updateUser: any;
 
   public errorMsg
-
+  showSpinner = true
   constructor(public service: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getAUser().subscribe(el => {
       this.user = el.data;
+      this.showSpinner = false
     })
   }
 

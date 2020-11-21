@@ -11,16 +11,16 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post('/api/v1/users/login', { email, password }, this.noAuthHeader);
+    return this.http.post('http://localhost:4000/api/v1/users/login', { email, password }, this.noAuthHeader);
   }
 
 
   register(user: any) {
-    return this.http.post('/api/v1/users/signup', user, this.noAuthHeader)
+    return this.http.post('http://localhost:4000/api/v1/users/signup', user, this.noAuthHeader)
   }
 
   getAUser() {
-    return this.http.get<any>('/api/v1/users/getMe');
+    return this.http.get<any>('http://localhost:4000/api/v1/users/getMe');
 
   }
   setToken(token: string): void {

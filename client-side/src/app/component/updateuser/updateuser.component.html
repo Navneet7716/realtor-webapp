@@ -1,3 +1,11 @@
+<div>
+  <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
+</div>
+
+
+<div style="min-height: 400px;">
+
+
 <div class="card shadow" style="padding: 5%; margin: 5%; text-align: center;" *ngIf="user">
     <h1 style="text-align: center;">Update Your Info</h1>
     <form (submit)="FormSubmit($event)">
@@ -29,3 +37,4 @@
       </div>
 </div>
 
+</div>
