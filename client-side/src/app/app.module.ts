@@ -44,6 +44,7 @@ import { UpdatepasswordComponent } from './component/updatepassword/updatepasswo
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SearchListComponent } from './component/search/search-list/search-list.component';
 
 
 
@@ -67,6 +68,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UpdatepasswordComponent,
     ForgotPasswordComponent,
     ResetpasswordComponent,
+    SearchListComponent,
 
   ],
   imports: [

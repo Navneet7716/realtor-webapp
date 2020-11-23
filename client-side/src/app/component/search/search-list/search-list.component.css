@@ -1,6 +1,5 @@
-.example-detail-card {
+.example-search-card {
   /* min-height: 374px; */
-  text-align: center;
   max-height: 600px;
   /* min-width: 342px; */
   max-width: 374px;
@@ -10,18 +9,12 @@
   transition: 500ms;
 }
 
-.example-detail-card:hover {
+.example-search-card:hover {
   transform: scale(1.02);
 }
 
-.home__container {
+.home__container__search {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-@media only screen and (max-width: 360px) {
-  .example-detail-card {
-    width: 300px;
-  }
 }
