@@ -8,6 +8,13 @@
   /* flex-basis: 27%; */
   margin-bottom: 3%;
   transition: 500ms;
+  background: rgb(162, 161, 173);
+  background: radial-gradient(
+    circle,
+    rgba(162, 161, 173, 1) 0%,
+    rgba(219, 219, 223, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 .example-detail-card:hover {

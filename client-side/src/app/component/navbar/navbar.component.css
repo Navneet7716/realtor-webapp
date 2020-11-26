@@ -5,3 +5,21 @@
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 }
+
+.navbar__color {
+  background: rgb(160, 198, 252) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(160, 198, 252, 1) 11%,
+    rgba(222, 123, 191, 0.6337885495995272) 100%
+  ) !important;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.active {
+  background-color: #7db3ff;
+}

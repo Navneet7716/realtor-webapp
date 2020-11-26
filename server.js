@@ -54,6 +54,7 @@ csp.extend(app, {
         "https://cdn.jsdelivr.net/",
         "https://code.jquery.com",
         "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
       ],
       "worker-src": [
         "self",
@@ -65,6 +66,7 @@ csp.extend(app, {
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
         "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
       ],
       "frame-src": [
         "self",
@@ -75,6 +77,7 @@ csp.extend(app, {
         "https://api.mapbox.com",
         "http://localhost:3000",
         "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
       ],
       "img-src": [
         "self",
@@ -86,6 +89,7 @@ csp.extend(app, {
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
         "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
       ],
       "connect-src": [
         "self",
@@ -97,6 +101,7 @@ csp.extend(app, {
         "https://cdnjs.cloudflare.com",
         "http://localhost:3000",
         "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
       ],
     },
   },

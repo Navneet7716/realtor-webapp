@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../services/user.service"
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-updatepassword',
@@ -29,7 +29,7 @@ export class UpdatepasswordComponent implements OnInit {
     this.service.updatePassword(this.user).subscribe(el => {
       if (el['status'] === 200 || el['status'] === 'success') {
         this.service.setToken(el['token']);
-        alert("Password Updated!!")
+        alert('Password Updated!!');
         this.router.navigate(['/profile']);
       }
 
@@ -41,7 +41,7 @@ export class UpdatepasswordComponent implements OnInit {
           this.errorMsg = err.error.message;
 
         }
-      })
+      });
   }
 
 }
