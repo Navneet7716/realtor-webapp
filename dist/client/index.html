@@ -26,25 +26,16 @@
   <app-root></app-root>
   <script>
     window.watsonAssistantChatOptions = {
-      integrationID: "YOUR_INTEGRATION_ID",
-      region: "YOUR_REGION",
-      serviceInstanceID: "YOUR_SERVICE_INSTANCE_ID",
-  
-      carbonTheme: 'g90',
-      onLoad: function(instance) {
-        // Instance method to adjust specific CSS variables
-        instance.updateCSSVariables({
-          'BASE-font-family': '"Times New Roman", Times, serif',
-          '$active-primary': '#009900',
-          '$focus': '#008000',
-          '$hover-primary': '#00ff00',
-          '$interactive-01': '#008000'
-        });
-        instance.render();
-      }
-    };
-  
-    setTimeout(function(){const t=document.createElement('script');t.src='https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js';document.head.appendChild(t);});
+        integrationID: "f67dbe9b-76af-4d0e-9a5f-7974e1798072", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "6726976f-1f76-42d3-a7cb-d20475530449", // The ID of your service instance.
+        onLoad: function(instance) { instance.render(); }
+      };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+      document.head.appendChild(t);
+    });
   </script>
 <script src="runtime.acf0dec4155e77772545.js" defer></script><script src="polyfills.35a5ca1855eb057f016a.js" defer></script><script src="main.1ca338b5e8d0b45e5f8b.js" defer></script></body>
 
