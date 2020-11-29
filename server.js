@@ -106,17 +106,17 @@ csp.extend(app, {
     },
   },
 });
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'", "https:", "http:", "data:", "ws:"],
-      baseUri: ["'self'"],
-      fontSrc: ["'self'", "https:", "http:", "data:"],
-      scriptSrc: ["'self'", "https:", "http:", "blob:"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
-    },
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'", "https:", "http:", "data:", "ws:"],
+//       baseUri: ["'self'"],
+//       fontSrc: ["'self'", "https:", "http:", "data:"],
+//       scriptSrc: ["'self'", "https:", "http:", "blob:"],
+//       styleSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
+//     },
+//   })
+// );
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
