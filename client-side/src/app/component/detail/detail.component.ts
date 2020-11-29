@@ -19,11 +19,12 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,) { }
   showSpinner: boolean = true;
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    // window.scroll({
+    //   top: 0,
+    //   left: 0,
+    //   behavior: 'smooth'
+    // });
+    window.scrollTo(0, 0)
     this.slug = this.route.snapshot.params['slug'];
     this.service.getOneProperty(this.slug).subscribe(el => {
       this.propertyData = el.data[0]
