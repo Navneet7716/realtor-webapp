@@ -6,16 +6,17 @@
   font-weight: bold;
 }
 
-/* .navbar__color {
-  background: rgb(160, 198, 252) !important;
-  background: linear-gradient(
-    90deg,
-    rgba(160, 198, 252, 1) 11%,
-    rgba(222, 123, 191, 0.6337885495995272) 100%
-  ) !important;
-} */
+.navbar__color {
+  background-color: rgb(0, 0, 0);
+  opacity: .9;
+}
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.navbar__button {
+  background-color: rgba(241, 241, 241, 0.137);
+  border: none !important;
 }

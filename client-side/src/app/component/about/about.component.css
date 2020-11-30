@@ -95,3 +95,48 @@
 .team__member:hover {
   transform: scale(1.02);
 }
+
+ a {
+  color: #030303;
+  text-decoration: none !important;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+ ul.social li {
+  padding: 3px 0;
+}
+ ul.social li a i {
+  margin-right: 5px;
+  font-size: 25px;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+ ul.social li:hover a i {
+  font-size: 30px;
+  margin-top: -10px;
+}
+ ul.social li a,
+ ul.quick-links li a {
+  color: #000000;
+}
+ ul.social li a:hover {
+  color: #030303;
+}
+ ul.quick-links li {
+  padding: 3px 0;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+ ul.quick-links li:hover {
+  padding: 3px 0;
+  margin-left: 5px;
+  font-weight: 700;
+}
+ ul.quick-links li a i {
+  margin-right: 5px;
+}
+ ul.quick-links li:hover a i {
+  font-weight: 700;
+}
