@@ -1,12 +1,14 @@
-<mat-card class="shadow p-3" style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+<mat-card class="shadow p-3 mb-5" style="display: flex; flex-direction: row; align-items: center; text-align: center;">
     
 <mat-form-field style="flex: 1">
     <input matInput  name="search" placeholder="Search" [(ngModel)]="search" style="text-align: center;">
 </mat-form-field>
 <button mat-button type="submit" (click)="onSubmit()"><mat-icon>search</mat-icon></button>
 </mat-card>
-<div style="height: 100vh;">
+<div style="height: auto;">
+    
     <mat-card class="shadow p-3 mt-2 text-center" *ngIf="finalList">
         <app-search-list [parentData]="finalList"></app-search-list>
      </mat-card>
+ 
 </div>
