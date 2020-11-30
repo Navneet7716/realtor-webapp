@@ -26,11 +26,14 @@ form {
 }
 
 .main__form__div {
-  padding: 5%;
+ 
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -42,6 +45,7 @@ form {
   .chartEmi {
     height: 600px;
     width: 280px;
+    margin-bottom: 10px;
   }
   .emiform {
     height: 400px;

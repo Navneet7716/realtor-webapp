@@ -4,7 +4,9 @@
   justify-content: space-around;
   margin-bottom: 5%;
 }
-
+.mat-tab-group {
+  margin-bottom: 48px;
+}
 .main__detail_card {
   min-height: 1000px;
 }
@@ -35,13 +37,12 @@
 }
 
 .map {
-  height: 500px;
+  height: 100%;
   width: 100%;
 }
 
 @media only screen and (max-width: 554px) {
   .map {
-    height: 300px;
     width: 100%;
   }
   .container2 {

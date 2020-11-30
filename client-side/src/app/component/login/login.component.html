@@ -1,6 +1,8 @@
-<div class="card shadow" style="padding: 5%; margin: 5%; text-align: center;">
+<mat-card class="shadow" style="padding: 5%; margin: 5%; text-align: center;">
     <h1 style="text-align: center;">Login</h1>
-    <form (submit)="FormSubmit($event)">
+    <mat-divider>
+    </mat-divider>
+    <form (submit)="FormSubmit($event)" style="margin-top: 30px;">
         <div>
             <mat-form-field>
                 <mat-label>Email address</mat-label>
@@ -17,11 +19,11 @@
             <button mat-raised-button type="submit" color="primary" [disabled]="email.value == '' || password.value == ''">Submit</button>
            </div>
       </form>
+   
     
       <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
         {{errorMsg}}
       </div>
-
       
       <div class="p-3">
         <small>Forgot Password?<a [routerLink]="['/forgotpassword']">Click here</a></small>
@@ -30,4 +32,4 @@
         <small>Don't have an account? <a [routerLink]="['/register']">Register</a></small>
     </div>
     
-</div>
+</mat-card>

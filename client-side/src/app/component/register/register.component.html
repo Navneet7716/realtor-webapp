@@ -1,9 +1,11 @@
 <div>
   <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
 </div>
-<div class="card shadow" style="padding: 5%; margin: 5%; text-align: center;">
+<mat-card class="shadow" style="padding: 5%; margin: 5%; text-align: center;">
     <h1 style="text-align: center;">Register</h1>
-    <form (submit)="FormSubmit($event)">
+    <mat-divider>
+    </mat-divider>
+    <form (submit)="FormSubmit($event)" style="margin-top: 30px;">
         <div>
             <mat-form-field>
                 <mat-label>Name</mat-label>
@@ -52,4 +54,4 @@
           <small>Already a Member? <a [routerLink]="['/login']">Login</a></small>
       </div>
     
-</div>
+</mat-card>

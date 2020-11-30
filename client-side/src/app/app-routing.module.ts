@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'updatePassword', component: UpdatepasswordComponent, canActivate: [AuthGuard] },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'resetPassword/:token', component: ResetpasswordComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

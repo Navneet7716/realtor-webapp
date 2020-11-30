@@ -8,6 +8,7 @@
   /* flex-basis: 27%; */
   margin-bottom: 3%;
   transition: 500ms;
+  margin-bottom: 30px;
 }
 
 .example-detail-card:hover {

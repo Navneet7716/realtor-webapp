@@ -45,6 +45,9 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchListComponent } from './component/search/search-list/search-list.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 
 
@@ -87,7 +90,9 @@ import { SearchListComponent } from './component/search/search-list/search-list.
     ChartsModule,
     MatSidenavModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatTabsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -2,22 +2,21 @@
     <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
 </div>
 
-
 <div style="min-height: 2310px; ">
-<div class="card shadow mt-2">
+<mat-card class="shadow mt-2">
     
     <h1 style="text-align: center; margin: 20px; font-family: 'Lora', serif; font-weight: 100; font-size:35px;">“Where Dreams Come Home”</h1>
-</div>
+</mat-card>
 
 <app-slideshow></app-slideshow>
-<div class="card shadow">
-    <div class="card shadow m-3">
-        <h1 style="text-align: center; margin: 20px; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:35px; text-decoration: underline; text-decoration-color: gray; margin-bottom: 40px;">“Featured new projects”</h1>
-    </div>
+<mat-card class="shadow">
+    <mat-card class="shadow m-3">
+        <h1 style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:35px; text-decoration: underline; text-decoration-color: gray; margin:10px;">“Featured new projects”</h1>
+    </mat-card>
     
 
 <app-propertycard [parentData]="properties"></app-propertycard>
-</div>
+</mat-card>
 
 </div>
 <!-- 2310 -->

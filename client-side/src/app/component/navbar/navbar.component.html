@@ -3,31 +3,31 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav" >
+      <ul class="navbar-nav" style="margin-left:auto !important;">
         <li class="nav-item">
-          <a class="nav-link btn btn-dark navbar__button m-2 text-center" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
+          <a class="nav-link navbar__button m-2 text-center" [routerLink]="['/home']" routerLinkActive="active" ><i class="fa fa-home" aria-hidden="true"></i> Home</a>
         </li>
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
-          <a class="nav-link btn btn-dark navbar__button m-2 text-center" [routerLink]="['/search']" routerLinkActive="active">Search</a>
+          <a class="nav-link navbar__button m-2 text-center" [routerLink]="['/search']" routerLinkActive="active"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
         </li>
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
-          <a class="nav-link btn btn-dark navbar__button text-center m-2" [routerLink]="['/emi']" routerLinkActive="active">EMI Calculator</a>
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/emi']" routerLinkActive="active"><i class="fa fa-inr" aria-hidden="true"></i> EMI Calculator</a>
         </li>
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
-          <a class="nav-link btn btn-dark navbar__button text-center m-2" [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/profile']" routerLinkActive="active"><i class="fa fa-user"></i> Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-dark navbar__button text-center m-2" [routerLink]="['/about']" routerLinkActive="active" >About</a>
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/about']" routerLinkActive="active" ><i class="fa fa-info-circle"></i> About</a>
         </li>
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
-          <a class="nav-link btn btn-dark navbar__button text-center m-2" [routerLink]="['/logout']" routerLinkActive="active" tabindex="-1" (click)="Logout()">Logout</a>
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/logout']" routerLinkActive="active" tabindex="-1" (click)="Logout()"><i class="fa fa-sign-out"></i>  Logout</a>
         </li>
         <li class="nav-item" *ngIf="!this.service.isLoggedin()">
-          <a class="nav-link btn btn-dark navbar__button text-center m-2" [routerLink]="['/login']" routerLinkActive="active" tabindex="-1">Login</a>
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/login']" routerLinkActive="active" tabindex="-1"><i class="fa fa-sign-in"></i> Login</a>
         </li>
         <li class="nav-item" *ngIf="!this.service.isLoggedin()">
-          <a class="nav-link btn btn-dark navbar__button text-center m-2" [routerLink]="['/register']" routerLinkActive="active" tabindex="-1">Register</a>
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/register']" routerLinkActive="active" tabindex="-1"><i class="fa fa-user"></i>  Register</a>
         </li>
       </ul>
     </div>
