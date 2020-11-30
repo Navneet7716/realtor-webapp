@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   properties: any = []
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
 
     this.service.getAllProperties().subscribe(el => {
       this.properties = el.data

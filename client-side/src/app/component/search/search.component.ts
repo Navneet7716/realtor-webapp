@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    window.scrollTo(0, 0)
     this.service.getAllProperties().subscribe(el => {
       this.DataSet = el.data
     })

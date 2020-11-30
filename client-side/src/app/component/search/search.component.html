@@ -5,6 +5,8 @@
 </mat-form-field>
 <button mat-button type="submit" (click)="onSubmit()"><mat-icon>search</mat-icon></button>
 </mat-card>
-<mat-card class="shadow p-3 mt-2 text-center" *ngIf="finalList">
-   <app-search-list [parentData]="finalList"></app-search-list>
-</mat-card>
+<div style="height: 100vh;">
+    <mat-card class="shadow p-3 mt-2 text-center" *ngIf="finalList">
+        <app-search-list [parentData]="finalList"></app-search-list>
+     </mat-card>
+</div>

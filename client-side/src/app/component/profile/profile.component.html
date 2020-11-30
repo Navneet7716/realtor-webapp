@@ -1,27 +1,29 @@
 <div>
     <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
 </div>
+<div style="height: 100vh;">
 
-<mat-card class="main__card shadow animate__animated animate__fadeInUpBig" >
-
-
-<div *ngIf="user">
-
-<div class="main__image">
-    <img src="{{imgurl}}{{user.photo}}" alt="" class="shadow">
-</div>
-
-<mat-card class=" shadow user__info">
-    <p>Name: {{user.name}}</p>
-    <p>Email: {{user.email}}</p>
-    <p>Phone: {{user.phone}}</p>
-    <div style="text-align: center !important;">
-        <button mat-raised-button color="primary" [routerLink]="['/updateProfile']" style="margin: 2%;" >Update User Info</button>
-        <button mat-raised-button color="warn" [routerLink]="['/updatePassword']" >Update User Password</button>
+    <mat-card class="main__card shadow animate__animated animate__fadeInUpBig" >
+    
+    
+    <div *ngIf="user">
+    
+    <div class="main__image">
+        <img src="{{imgurl}}{{user.photo}}" alt="" class="shadow">
+    </div>
+    
+    <mat-card class=" shadow user__info">
+        <p>Name: {{user.name}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Phone: {{user.phone}}</p>
+        <div style="text-align: center !important;">
+            <button mat-raised-button color="primary" [routerLink]="['/updateProfile']" style="margin: 2%;" >Update User Info</button>
+            <button mat-raised-button color="warn" [routerLink]="['/updatePassword']" >Update User Password</button>
+        
+        </div>
+       </mat-card> 
+    
     
     </div>
-   </mat-card> 
-
-
+    </mat-card>
 </div>
-</mat-card>

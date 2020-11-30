@@ -37,6 +37,7 @@ export class CalculatorComponent implements OnInit {
   constructor(public service: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     this.service.getAUser().subscribe(el => {
       this.user = el.data; if (this.user != undefined || this.user != null) {
         this.showSpinner = false
