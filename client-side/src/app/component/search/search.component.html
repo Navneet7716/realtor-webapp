@@ -1,14 +1,42 @@
-<mat-card class="shadow p-3 mb-5" style="display: flex; flex-direction: row; align-items: center; text-align: center;">
-    
-<mat-form-field style="flex: 1">
-    <input matInput  name="search" placeholder="Search" [(ngModel)]="search" style="text-align: center;">
-</mat-form-field>
-<button mat-button type="submit" (click)="onSubmit()"><mat-icon>search</mat-icon></button>
+<mat-card class="shadow p-3 mb-5" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="text-align: center;">
+
+        <mat-form-field>
+            <input matInput  name="search" placeholder="Search" formControlName="search" style="text-align: center;">
+        </mat-form-field>
+        <button mat-button type="submit"><mat-icon>search</mat-icon></button>
+
+    </form>
+
 </mat-card>
-<div style="height: auto;">
-    
-    <mat-card class="shadow p-3 mt-2 text-center" *ngIf="finalList">
+
+ <ng-container *ngIf="finalList; else elseTemplate">
+    <mat-card class="shadow p-3 mt-2 text-center">
+        
+        
         <app-search-list [parentData]="finalList"></app-search-list>
      </mat-card>
+ </ng-container>
+ <ng-template #elseTemplate>
+     <mat-card style="height: 500px ; display: flex;
+     justify-content: center;
+     align-items: center; flex-direction: column;">
+        <h1>Welcome To Search 🔎</h1>
+        <ul style="list-style:square; margin-top: 30px;">
+            <li>
+                Try Searching By the name of state.
+            </li>
+            <li>
+                Or By the name of the Area or City.
+            </li>
+            <li>
+                Or by the pincode of an Area.
+            </li>
+        </ul>
+     </mat-card>
+ </ng-template>
  
-</div>
+    
+   
+

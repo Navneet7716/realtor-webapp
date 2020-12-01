@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyService } from 'src/app/services/property.service';
+import { FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'app-search',
@@ -8,6 +9,8 @@ import { PropertyService } from 'src/app/services/property.service';
 })
 export class SearchComponent implements OnInit {
 
+  myForm: FormGroup
+
   search: string
 
   finalList: any[]
@@ -15,28 +18,29 @@ export class SearchComponent implements OnInit {
 
   DataSet: any[]
 
-  constructor(private service: PropertyService) { }
+  constructor(private service: PropertyService, private fb: FormBuilder) { }
 
   // location: any
 
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
+    this.myForm = this.fb.group({
+      search: ''
+    })
     this.service.getAllProperties().subscribe(el => {
       this.DataSet = el.data
     })
-
-
-
   }
+
 
   onSubmit() {
 
-    if (!this.search || this.search === "") {
+    if (!this.myForm.value.search || this.myForm.value.search === "") {
       this.finalList = this.DataSet;
     } else {
       this.finalList = this.DataSet.filter((property) => property.address.toLowerCase()
-        .indexOf(this.search.toLowerCase()) !== -1);
+        .indexOf(this.myForm.value.search.toLowerCase()) !== -1);
     }
   }
 

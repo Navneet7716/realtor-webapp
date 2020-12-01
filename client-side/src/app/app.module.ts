@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +47,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchListComponent } from './component/search/search-list/search-list.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 
 
@@ -92,7 +94,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatProgressBarModule,
     MatSnackBarModule,
     MatDividerModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatTooltipModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

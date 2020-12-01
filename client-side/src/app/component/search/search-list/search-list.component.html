@@ -19,7 +19,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="accent" routerLink="/home/{{ item.slug }}" >Detail</button>
+          <button matTooltip="Click To Get Details" mat-raised-button color="accent" routerLink="/home/{{ item.slug }}" >Detail</button>
           <button mat-button>Starting Price ₹ {{item.price / 10000000}} Cr.</button>
         </mat-card-actions>
       </mat-card>
