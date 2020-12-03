@@ -30,7 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.btndisable = true;
 
     this.service.forgotPassword(this.user.email).subscribe(el => {
-      console.log(el)
+
 
       if (el['status'] == 'success' || el['status'] == 200) {
         this.showSpinner = false
