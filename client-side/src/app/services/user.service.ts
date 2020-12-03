@@ -11,16 +11,16 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post('/api/v1/users/login', { email, password }, this.noAuthHeader);
+    return this.http.post('http://localhost:4000/api/v1/users/login', { email, password }, this.noAuthHeader);
   }
 
 
   register(user: any) {
-    return this.http.post('/api/v1/users/signup', user, this.noAuthHeader)
+    return this.http.post('http://localhost:4000/api/v1/users/signup', user, this.noAuthHeader)
   }
 
   getAUser() {
-    return this.http.get<any>('/api/v1/users/getMe');
+    return this.http.get<any>('http://localhost:4000/api/v1/users/getMe');
 
   }
   setToken(token: string): void {
@@ -58,19 +58,19 @@ export class UserService {
 
 
   updateUser(user): any {
-    return this.http.post('/api/v1/users/updateMe', user);
+    return this.http.post('http://localhost:4000/api/v1/users/updateMe', user);
   }
 
   updatePassword(user): any {
-    return this.http.patch('/api/v1/users/updateMyPassword', user)
+    return this.http.patch('http://localhost:4000/api/v1/users/updateMyPassword', user)
   }
 
   forgotPassword(email): any {
-    return this.http.post("/api/v1/users/forgotPassword", { email: email }, this.noAuthHeader)
+    return this.http.post("http://localhost:4000/api/v1/users/forgotPassword", { email: email }, this.noAuthHeader)
   }
 
   resetPassword(user, token): any {
-    return this.http.patch(`/api/v1/users/resetPassword/${token}`, { password: user.password, passwordConfirm: user.passwordConfirm }, this.noAuthHeader)
+    return this.http.patch(`http://localhost:4000/api/v1/users/resetPassword/${token}`, { password: user.password, passwordConfirm: user.passwordConfirm }, this.noAuthHeader)
   }
 
 

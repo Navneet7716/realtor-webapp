@@ -72,7 +72,8 @@ exports.getPropertiesWithin = async (req, res, next) => {
   const { distance, latlng, unit } = req.params;
   const [lat, lng] = latlng.split(",");
 
-  const radius = unit === "mi" ? distance / 3963.2 : distance / 6378.1;
+  const radius =
+    unit === "mi" ? (distance * 1) / 3963.2 : (distance * 1) / 6378.1;
 
   if (!lat || !lng) {
     res.status(400).json({
@@ -84,7 +85,7 @@ exports.getPropertiesWithin = async (req, res, next) => {
 
   try {
     const property = await Property.find({
-      location: { $geoWithin: { $centerSphere: [[lat, lng], radius] } },
+      location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
     });
 
     res.status(200).json({

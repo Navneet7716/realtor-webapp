@@ -1,9 +1,12 @@
 
 <div class="home__container">
 
+
     <div *ngIf="parentData.length === 0" class="alert alert-info" style="text-align: center;">
         No properties are available within 200 km radius from you location.
     </div>
+   
+   
     <div *ngFor="let item of parentData">
     <mat-card class="example-detail-card">
         <mat-card-header>

@@ -40,6 +40,10 @@
         <div *ngIf="lat === undefined || lng === undefined" class="alert alert-info" style="text-align: center;">
             Please Allow us to know your location !
         </div>
+        <div style="text-align: center;"  class="alert alert-info">
+            <p>Total Results: {{ propertiesnearby.length }}</p>
+        
+          </div>
         <app-nearby [parentData]="propertiesnearby"></app-nearby>
        
     

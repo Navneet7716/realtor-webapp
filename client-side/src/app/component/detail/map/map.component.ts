@@ -21,12 +21,12 @@ export class MapComponent implements OnInit {
       container: 'map',
       style: this.style,
       zoom: 15,
-      center: [this.parentData[1], this.parentData[0]],
+      center: [this.parentData[0], this.parentData[1]],
       scrollZoom: false,
     });
     // Add map controls
     new mapboxgl.Marker()
-      .setLngLat([this.parentData[1], this.parentData[0]])
+      .setLngLat([this.parentData[0], this.parentData[1]])
       .addTo(this.map);
     this.map.addControl(new mapboxgl.NavigationControl({
       showCompass: true,
