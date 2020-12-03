@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PropertyService {
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) }
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class PropertyService {
 
   getOneProperty(slug: string): Observable<any> {
     return this.http.get(this.url + `/api/v1/properties/${slug}`)
+  }
+
+  getPropertiesWithin(lat, lng): Observable<any> {
+    return this.http.get(this.url + `/api/v1/properties/properties-within/200/center/${lat},${lng}/unit/km`, this.noAuthHeader)
   }
 
 }

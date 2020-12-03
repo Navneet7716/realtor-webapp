@@ -11,14 +11,53 @@
 <app-slideshow></app-slideshow>
 <mat-card class="shadow">
     <mat-card class="shadow m-3">
-        <h1 style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:35px; text-decoration: underline; text-decoration-color: gray; margin:10px;">“Featured new projects”</h1>
+        <p style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size: 1.9rem; text-decoration-color: gray; margin:10px;">“Featured new projects”</p>
     </mat-card>
-    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="OnPageChange($event)"></mat-paginator>
 
     
 
 <app-propertycard [parentData]="pagedList"></app-propertycard>
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="OnPageChange($event)"></mat-paginator>
+
 </mat-card>
+
+<mat-card class="shadow mt-3">
+    <mat-card class="shadow m-3">
+        <p style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:1.9rem; text-decoration-color: gray; margin:10px;">“Some Upcoming Projects”</p>
+    </mat-card>
+    <app-upcoming [parentData]="pagedListforupcoming"></app-upcoming>
+    <mat-paginator [length]="lengthforUpcoming" [pageSize]="pageSizeforUpcoming" [pageSizeOptions]="pageSizeOptionsforUpcoming" (page)="OnPageChangeforUpcoming($event)"></mat-paginator>
+
+</mat-card>
+
+<ng-container *ngIf="clicked; else elseTemplate">
+   
+    <mat-card class="shadow mt-3">
+   
+        <mat-card class="shadow m-3">
+            <p style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:1.9rem; text-decoration-color: gray; margin:10px;">“Properties Nearby You”</p>
+        </mat-card>
+        <div *ngIf="lat === undefined || lng === undefined" class="alert alert-info" style="text-align: center;">
+            Please Allow us to know your location !
+        </div>
+        <app-nearby [parentData]="propertiesnearby"></app-nearby>
+       
+    
+    </mat-card>
+</ng-container>
+<ng-template #elseTemplate>
+    <mat-card>
+        <mat-card class="shadow m-3">
+
+            <div style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:1.4rem; text-decoration-color: gray; margin:10px;">Click here to see properties nearby you  <button mat-raised-button color="primary" (click)="callClick()" class="ml-2">Click here</button></div>
+           
+        </mat-card>
+    </mat-card>
+    
+</ng-template>
+
+
+
 
 </div>
 <!-- 2310 -->

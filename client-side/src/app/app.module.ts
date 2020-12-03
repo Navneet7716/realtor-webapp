@@ -49,6 +49,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { UpcomingComponent } from './component/home/upcoming/upcoming.component';
+import { NearbyComponent } from './component/home/nearby/nearby.component';
 
 
 
@@ -75,6 +77,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ForgotPasswordComponent,
     ResetpasswordComponent,
     SearchListComponent,
+    UpcomingComponent,
+    NearbyComponent,
 
   ],
   imports: [

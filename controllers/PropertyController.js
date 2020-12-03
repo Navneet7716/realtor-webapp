@@ -84,7 +84,7 @@ exports.getPropertiesWithin = async (req, res, next) => {
 
   try {
     const property = await Property.find({
-      location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
+      location: { $geoWithin: { $centerSphere: [[lat, lng], radius] } },
     });
 
     res.status(200).json({
@@ -106,7 +106,7 @@ exports.getDistance = async (req, res, next) => {
   const { latlng, unit } = req.params;
   const [lat, lng] = latlng.split(",");
 
-  const multiplier = unit === "mi" ? 0.000621371 : 0.0001;
+  const multiplier = unit === "mi" ? 0.000621371 : 0.001;
 
   if (!lng || !lat) {
     res.status(400).json({
@@ -122,7 +122,7 @@ exports.getDistance = async (req, res, next) => {
         $geoNear: {
           near: {
             type: "Point",
-            coordinates: [lng * 1, lat * 1],
+            coordinates: [lat * 1, lng * 1],
           },
           distanceField: "distance",
           distanceMultiplier: multiplier,
