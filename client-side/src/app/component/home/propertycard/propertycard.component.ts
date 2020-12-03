@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-propertycard',
@@ -9,11 +9,15 @@ export class PropertycardComponent implements OnInit {
 
   @Input() public parentData
 
+  @Output() public childevent = new EventEmitter();
+
   imgurl: string = "../../../../assets/images/property/"
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }

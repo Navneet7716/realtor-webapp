@@ -48,6 +48,7 @@ import { SearchListComponent } from './component/search/search-list/search-list.
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -96,7 +97,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDividerModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

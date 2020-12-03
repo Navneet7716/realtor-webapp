@@ -8,7 +8,7 @@
 <h1 style="text-align: center;font-style: italic;">"<span style="text-decoration: underline;">{{propertyData.name}}</span>"</h1>
 
 <div class="container2" > 
-    <img *ngFor="let item of propertyData.images" src="../../../assets/images/property/{{item}}" class="detail-card ">
+    <img *ngFor="let item of propertyData.images" src="../../../assets/images/property/{{item.split('.')[0]}}.webp" class="detail-card ">
 </div>
 
 <mat-tab-group mat-align-tabs="center" style="margin-top: 30px;">
