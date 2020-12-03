@@ -5,7 +5,7 @@
 <div style="height: auto;">
 <mat-card class="shadow mt-2">
     
-    <h1 style="text-align: center; margin: 20px; font-family: 'Lora', serif; font-weight: 100; font-size:35px;">“Where Dreams Come Home”</h1>
+    <p style="text-align: center; margin: 20px; font-family: 'Raleway', sans-serif; font-weight: 400; font-size:35px;">“Where Dreams Come Home”</p>
 </mat-card>
 
 <app-slideshow></app-slideshow>
@@ -13,11 +13,11 @@
     <mat-card class="shadow m-3">
         <p style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size: 1.9rem; text-decoration-color: gray; margin:10px;">“Featured new projects”</p>
     </mat-card>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="OnPageChange($event)"></mat-paginator>
 
     
 
 <app-propertycard [parentData]="pagedList"></app-propertycard>
-<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="OnPageChange($event)"></mat-paginator>
 
 </mat-card>
 
@@ -25,8 +25,9 @@
     <mat-card class="shadow m-3">
         <p style="text-align: center; font-family: 'Raleway', sans-serif; font-weight: 100; font-style: italic; font-size:1.9rem; text-decoration-color: gray; margin:10px;">“Some Upcoming Projects”</p>
     </mat-card>
-    <app-upcoming [parentData]="pagedListforupcoming"></app-upcoming>
     <mat-paginator [length]="lengthforUpcoming" [pageSize]="pageSizeforUpcoming" [pageSizeOptions]="pageSizeOptionsforUpcoming" (page)="OnPageChangeforUpcoming($event)"></mat-paginator>
+
+    <app-upcoming [parentData]="pagedListforupcoming"></app-upcoming>
 
 </mat-card>
 
