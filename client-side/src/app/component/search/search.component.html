@@ -1,9 +1,9 @@
 <mat-card class="shadow p-3 mb-5" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="text-align: center;">
-
+    <form [formGroup]="myForm"  style="text-align: center;">
+        <!-- (ngSubmit)="onSubmit()" -->
         <mat-form-field>
-            <input matInput  name="search" placeholder="Search" formControlName="search" style="text-align: center;">
+            <input matInput  name="search" placeholder="Search" formControlName="search" style="text-align: center;" (ngModelChange)="onSubmit()">
         </mat-form-field>
         <button mat-button type="submit"><mat-icon>search</mat-icon></button>
 

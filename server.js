@@ -35,6 +35,70 @@ app.use(cors());
 app.use(compression());
 app.use(express.static(process.cwd() + "/dist/client/"));
 
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+// limit requests from same API
+const limiter = rateLimit({
+  max: 100,
+  windowsMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP, please try again in an hour!",
+});
+
+app.use("/api", limiter);
+
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(cookieParser());
+app.use(express.json({ limit: "10kb" }));
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+
+app.use(xss());
+
+// Prevent Parameter pollution
+
+app.use(
+  hpp({
+    whitelist: [
+      "duration",
+      "ratingsQuantity",
+      "ratingsAverage",
+      "maxGroupSize",
+      "difficulty",
+      "price",
+    ],
+  })
+);
+// app.use(express.static(`${__dirname}/public`));
+
+// test middleware
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("DB CONNECTION SUCCESSFUL 🔥"));
+
+app.use("/api/v1/properties", propertyRouter);
+app.use("/api/v1/users", userRouter);
+
+app.get("/*", async (req, res) => {
+  res.sendFile(process.cwd() + "/dist/client/index.html");
+});
+
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => console.log(`Server Started at ${port}`));
+
 // csp.extend(app, {
 //   policy: {
 //     directives: {
@@ -117,67 +181,3 @@ app.use(express.static(process.cwd() + "/dist/client/"));
 //     },
 //   })
 // );
-
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
-
-// limit requests from same API
-const limiter = rateLimit({
-  max: 100,
-  windowsMs: 60 * 60 * 1000,
-  message: "Too many requests from this IP, please try again in an hour!",
-});
-
-app.use("/api", limiter);
-
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
-app.use(cookieParser());
-app.use(express.json({ limit: "10kb" }));
-app.use(mongoSanitize());
-
-// Data sanitization against XSS
-
-app.use(xss());
-
-// Prevent Parameter pollution
-
-app.use(
-  hpp({
-    whitelist: [
-      "duration",
-      "ratingsQuantity",
-      "ratingsAverage",
-      "maxGroupSize",
-      "difficulty",
-      "price",
-    ],
-  })
-);
-// app.use(express.static(`${__dirname}/public`));
-
-// test middleware
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  next();
-});
-
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("DB CONNECTION SUCCESSFUL 🔥"));
-
-app.use("/api/v1/properties", propertyRouter);
-app.use("/api/v1/users", userRouter);
-
-app.get("/*", async (req, res) => {
-  res.sendFile(process.cwd() + "/dist/client/index.html");
-});
-
-const port = process.env.PORT || 4000;
-
-app.listen(port, () => console.log(`Server Started at ${port}`));
