@@ -1,0 +1,84 @@
+<mat-card style="padding: 10%;">
+    <mat-card class="shadow">
+        <h1 style="text-align: center;">Register Your Property</h1>
+    </mat-card>
+    <mat-card class="mt-3 shadow" style="text-align: center; padding: 5%">
+        <div>
+            <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
+                <div style="display: flex">
+
+                    <mat-form-field style="flex: 1!important"  appearance="fill">
+                        <input matInput  name="name" placeholder="Name" formControlName="name">
+                    </mat-form-field>
+                </div>
+                <div style="display: flex;">
+
+                    <mat-form-field style="flex: 1 !important" appearance="fill">
+                        <textarea matInput placeholder="Add a Description About the Property" formControlName="description"></textarea>
+                      </mat-form-field>
+                </div>
+                <div style="display:flex;">
+
+                    <mat-form-field style="flex:1 !important" appearance="fill">
+                        <textarea matInput placeholder="Address" formControlName="address"></textarea>
+                      </mat-form-field>
+                </div>
+                <div style="display: flex;">
+
+                    <mat-form-field style="flex:1 !important" appearance="fill">
+                        <input matInput type="number" placeholder="Price" formControlName="price">
+                      </mat-form-field>
+                </div>
+                <mat-card class="mt-3 mb-3">
+                    <h1 style="text-align: center;">Add Location</h1>
+                </mat-card>
+                <div style="display: flex;">
+
+                    <mat-form-field style="flex:1 !important" appearance="fill">
+                        <input matInput type="number" placeholder="Longitude" formControlName="longitude">
+                      </mat-form-field>
+                </div>
+                <div  style="display: flex;">
+
+                    <mat-form-field style="flex:1 !important" appearance="fill">
+                        <input matInput type="number" placeholder="Latitude" formControlName="latitude">
+                      </mat-form-field>
+                </div>
+                <mat-card class="mt-3 mb-3">
+                    <h1 style="text-align: center;">Add Specifications</h1>
+                </mat-card>
+                <div  style="display: flex;">
+
+                    <mat-form-field class="" style="flex: 1!important" appearance="fill">
+                        <mat-label>Property Type</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option value="Home">Home</mat-option>
+                            <mat-option value="Apartment">Apartment</mat-option>
+                            <mat-option value="Duplex">Duplex</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div  style="display: flex;">
+
+                    <mat-form-field style="flex: 1!important" appearance="fill">
+                        <mat-label>Unit</mat-label>
+                        <mat-select formControlName="unit">
+                            <mat-option value="1 BHK">1 BHK</mat-option>
+                            <mat-option value="2 BHK">2 BHK</mat-option>
+                            <mat-option value="3 BHK">3 BHK</mat-option>
+                            <mat-option value="4 BHK">4 BHK</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div style="display: flex;">
+
+                    <mat-form-field style="flex: 1!important" appearance="fill">
+                            <input matInput placeholder="Area (ex 250-1200 sqft)" formControlName="area">
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button color="primary" type="submit">Submit</button>
+                <div *ngIf="errormessage !== ''" class="alert alert-danger mt-3">{{ errormessage }}</div>
+            </form>
+        </div>
+    </mat-card>
+</mat-card>

@@ -3,57 +3,75 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please tell us your name!"],
-  },
-  phone: {
-    type: Number,
-    required: [true, "Must have a Phone number"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please provide your email"],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, "Please provide a valid email"],
-  },
-  photo: {
-    type: String,
-    default: "default.jpg",
-  },
-  role: {
-    type: String,
-    enum: ["user", "dealer", "admin"],
-    default: "user",
-  },
-  password: {
-    type: String,
-    required: [true, "Please provide a password"],
-    minlength: 8,
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, "Please confirm the password"],
-    validate: {
-      // this only works on create and save!!!
-      validator: function (el) {
-        return el === this.password;
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please tell us your name!"],
+    },
+    phone: {
+      type: Number,
+      required: [true, "Must have a Phone number"],
+    },
+    email: {
+      type: String,
+      required: [true, "Please provide your email"],
+      unique: true,
+      lowercase: true,
+      validate: [validator.isEmail, "Please provide a valid email"],
+    },
+    photo: {
+      type: String,
+      default: "default.jpg",
+    },
+    role: {
+      type: String,
+      enum: ["user", "dealer", "admin", "owner"],
+      default: "user",
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide a password"],
+      minlength: 8,
+      select: false,
+    },
+    passwordConfirm: {
+      type: String,
+      required: [true, "Please confirm the password"],
+      validate: {
+        // this only works on create and save!!!
+        validator: function (el) {
+          return el === this.password;
+        },
+        message: "Passwords are not the same!",
       },
-      message: "Passwords are not the same!",
+    },
+    ownedProperties: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Property",
+      },
+    ],
+    passwordChangedAt: { type: Date },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    active: {
+      type: Boolean,
+      default: true,
+      select: false,
     },
   },
-  passwordChangedAt: { type: Date },
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-  active: {
-    type: Boolean,
-    default: true,
-    select: false,
-  },
-});
+  {
+    toJSON: { virtuals: true },
+    toObjects: { virtuals: true },
+  }
+);
+
+// userSchema.virtual("ownedProperties", {
+//   ref: "Property",
+//   foreignField: "tour",
+//   localField: "_id",
+// });
 
 userSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
@@ -96,6 +114,15 @@ userSchema.pre(/^find/, function (next) {
   this.find({ active: { $ne: false } });
   next();
 });
+
+// userSchema.pre(/^find/, function (next) {
+//   this.populate({
+//     path: "ownedProperties",
+//     select: "name slug _id",
+//   });
+
+//   next();
+// });
 
 userSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");

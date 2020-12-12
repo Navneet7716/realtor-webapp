@@ -16,11 +16,21 @@ export class ProfileComponent implements OnInit {
   showSpinner: boolean = true
   constructor(private service: UserService, private router: Router) { }
 
+  ownedProperties: any[] = []
+
+  isOwner: boolean = false
+
   ngOnInit(): void {
     window.scrollTo(0, 0)
     this.service.getAUser().subscribe(el => {
       this.user = el.data; if (this.user != undefined || this.user != null) {
         this.showSpinner = false
+        if (el.data.ownedProperties.length > 0)
+          this.ownedProperties = el.data.ownedProperties;
+      }
+
+      if (el.data.role === "owner") {
+        this.isOwner = true
       }
     }, err => {
       this.service.deleteToken()

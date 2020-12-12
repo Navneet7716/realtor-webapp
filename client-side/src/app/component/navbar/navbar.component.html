@@ -17,6 +17,12 @@
         <li class="nav-item" *ngIf="this.service.isLoggedin()">
           <a class="nav-link navbar__button text-center m-2" [routerLink]="['/profile']" routerLinkActive="active"><i class="fa fa-user"></i> Profile</a>
         </li>
+        <li class="nav-item" *ngIf="this.service.isOwner()">
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/notification']" routerLinkActive="active"><i class="fa fa-bell" ></i> Notification</a>
+        </li>
+        <li class="nav-item" *ngIf="this.service.isOwner()">
+          <a class="nav-link navbar__button text-center m-2" [routerLink]="['/registerProperty']" routerLinkActive="active"><i class="fa fa-home"></i> Register Property</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link navbar__button text-center m-2" [routerLink]="['/about']" routerLinkActive="active" ><i class="fa fa-info-circle"></i> About</a>
         </li>

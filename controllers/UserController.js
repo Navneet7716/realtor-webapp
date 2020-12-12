@@ -3,7 +3,10 @@ const Email = require("../utils/email");
 
 exports.getAllUsers = async (req, res, next) => {
   try {
-    const doc = await User.find();
+    const doc = await User.find().populate({
+      path: "ownedProperties",
+      select: "-owner -location -specification -dealers -rating",
+    });
 
     if (!doc) {
       throw Error("Not Found");
@@ -93,7 +96,10 @@ exports.updateUserData = async (req, res, next) => {
 
 exports.getMe = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).populate({
+      path: "ownedProperties",
+      select: "-owner -location -specification -dealers -rating",
+    });
 
     if (!user) {
       res.status(404).json({

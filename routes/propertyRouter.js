@@ -15,6 +15,14 @@ router.route("/:slugId").get(PropertyController.getOneProperty);
 //   .get(AuthController.protect, PropertyController.getOneProperty);
 
 router
+  .route("/uploadImage/:id")
+  .post(
+    PropertyController.uploadPropertyImages,
+    PropertyController.resizePropertyImages,
+    PropertyController.updateOne
+  );
+
+router
   .route("/distances/:latlng/unit/:unit")
   .get(PropertyController.getDistance);
 router

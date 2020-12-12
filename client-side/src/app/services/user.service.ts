@@ -18,6 +18,9 @@ export class UserService {
   register(user: any) {
     return this.http.post('/api/v1/users/signup', user, this.noAuthHeader)
   }
+  registerOwner(user: any) {
+    return this.http.post('/api/v1/users/signupowner', user, this.noAuthHeader)
+  }
 
   getAUser() {
     return this.http.get<any>('/api/v1/users/getMe');
@@ -54,6 +57,20 @@ export class UserService {
     else {
       return false;
     }
+  }
+
+  isOwner(): boolean {
+    if (this.isLoggedin()) {
+      const userPayload = this.getUserPayload();
+      if (userPayload) {
+        return userPayload.role === "owner"
+      }
+      else {
+        return false;
+      }
+    }
+    return false
+
   }
 
 

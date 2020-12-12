@@ -26,4 +26,8 @@ export class PropertyService {
     return this.http.get(this.url + `/api/v1/properties/properties-within/200/center/${lat},${lng}/unit/km`, this.noAuthHeader)
   }
 
+  insertProperty(file): Observable<any> {
+    return this.http.post(this.url + `/api/v1/properties`, file)
+  }
+
 }

@@ -7,7 +7,7 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.name.split(" ")[0] || "";
     this.url = url;
-    this.from = `srishi118@gmail.com`;
+    this.from = process.env.EMAIL;
   }
 
   newTransport() {
@@ -56,7 +56,13 @@ module.exports = class Email {
   async sendWelcome() {
     await this.send("welcome", "Welcome to the Realtors Family!");
   }
+  async sendContactInfo() {
+    await this.send("contact", "Requst For Owner Contacted Is Accepted.");
+  }
 
+  async sendDeclineMail() {
+    await this.send("decline", "Requst For Owner Contacted Is Declined.");
+  }
   async sendPasswordReset() {
     await this.send(
       "passwordReset",

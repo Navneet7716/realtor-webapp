@@ -22,6 +22,7 @@ const cookieParser = require("cookie-parser");
 
 const propertyRouter = require("./routes/propertyRouter");
 const userRouter = require("./routes/userRouter");
+const notificationRouter = require("./routes/notificationRouter");
 
 const app = express();
 dotenv.config({ path: "./config.env" });
@@ -90,6 +91,7 @@ mongoose
 
 app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/notification", notificationRouter);
 
 app.get("/*", async (req, res) => {
   res.sendFile(process.cwd() + "/dist/client/index.html");
@@ -99,85 +101,87 @@ const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`Server Started at ${port}`));
 
-// csp.extend(app, {
-//   policy: {
-//     directives: {
-//       "default-src": ["self"],
-//       "style-src": ["self", "unsafe-inline", "https:"],
-//       "font-src": ["self", "https:"],
-//       "script-src": [
-//         "self",
-//         "unsafe-inline",
-//         "data",
-//         "blob",
-//         "https://js.stripe.com",
-//         "https://api.mapbox.com",
-//         "https://cdnjs.cloudflare.com",
-//         "https://cdnjs.cloudflare.com",
-//         "http://localhost:3000",
-//         "https://cdn.jsdelivr.net/",
-//         "https://code.jquery.com",
-//         "https://stackpath.bootstrapcdn.com/",
-//         "https://web-chat.global.assistant.watson.appdomain.cloud",
-//       ],
-//       "worker-src": [
-//         "self",
-//         "unsafe-inline",
-//         "data:",
-//         "blob:",
-//         "https://js.stripe.com",
-//         "https://api.mapbox.com",
-//         "https://cdnjs.cloudflare.com",
-//         "http://localhost:3000",
-//         "https://stackpath.bootstrapcdn.com/",
-//         "https://web-chat.global.assistant.watson.appdomain.cloud",
-//       ],
-//       "frame-src": [
-//         "self",
-//         "unsafe-inline",
-//         "data:",
-//         "blob:",
-//         "https://js.stripe.com",
-//         "https://api.mapbox.com",
-//         "http://localhost:3000",
-//         "https://stackpath.bootstrapcdn.com/",
-//         "https://web-chat.global.assistant.watson.appdomain.cloud",
-//       ],
-//       "img-src": [
-//         "self",
-//         "unsafe-inline",
-//         "data:",
-//         "blob:",
-//         "https://js.stripe.com",
-//         "https://api.mapbox.com",
-//         "https://cdnjs.cloudflare.com",
-//         "http://localhost:3000",
-//         "https://stackpath.bootstrapcdn.com/",
-//         "https://web-chat.global.assistant.watson.appdomain.cloud",
-//       ],
-//       "connect-src": [
-//         "self",
-//         "unsafe-inline",
-//         "data:",
-//         "blob:",
-//         "https://api.mapbox.com",
-//         "https://events.mapbox.com",
-//         "https://cdnjs.cloudflare.com",
-//         "http://localhost:3000",
-//         "https://stackpath.bootstrapcdn.com/",
-//         "https://web-chat.global.assistant.watson.appdomain.cloud",
-//       ],
-//     },
-//   },
-// });
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'", "https:", "http:", "data:", "ws:"],
-//       baseUri: ["'self'"],
-//       fontSrc: ["'self'", "https:", "http:", "data:"],
-//       scriptSrc: ["'self'", "https:", "http:", "blob:"],
-//       styleSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
-//     },
-//   })
-// );
+/* csp.extend(app, {
+  policy: {
+    directives: {
+      "default-src": ["self"],
+      "style-src": ["self", "unsafe-inline", "https:"],
+      "font-src": ["self", "https:"],
+      "script-src": [
+        "self",
+        "unsafe-inline",
+        "data",
+        "blob",
+        "https://js.stripe.com",
+        "https://api.mapbox.com",
+        "https://cdnjs.cloudflare.com",
+        "https://cdnjs.cloudflare.com",
+        "http://localhost:3000",
+        "https://cdn.jsdelivr.net/",
+        "https://code.jquery.com",
+        "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
+      ],
+      "worker-src": [
+        "self",
+        "unsafe-inline",
+        "data:",
+        "blob:",
+        "https://js.stripe.com",
+        "https://api.mapbox.com",
+        "https://cdnjs.cloudflare.com",
+        "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
+      ],
+      "frame-src": [
+        "self",
+        "unsafe-inline",
+        "data:",
+        "blob:",
+        "https://js.stripe.com",
+        "https://api.mapbox.com",
+        "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
+      ],
+      "img-src": [
+        "self",
+        "unsafe-inline",
+        "data:",
+        "blob:",
+        "https://js.stripe.com",
+        "https://api.mapbox.com",
+        "https://cdnjs.cloudflare.com",
+        "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
+      ],
+      "connect-src": [
+        "self",
+        "unsafe-inline",
+        "data:",
+        "blob:",
+        "https://api.mapbox.com",
+        "https://events.mapbox.com",
+        "https://cdnjs.cloudflare.com",
+        "http://localhost:3000",
+        "https://stackpath.bootstrapcdn.com/",
+        "https://web-chat.global.assistant.watson.appdomain.cloud",
+      ],
+    },
+  },
+});
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "https:", "http:", "data:", "ws:"],
+      baseUri: ["'self'"],
+      fontSrc: ["'self'", "https:", "http:", "data:"],
+      scriptSrc: ["'self'", "https:", "http:", "blob:"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
+    },
+  })
+);
+
+*/

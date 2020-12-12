@@ -19,8 +19,10 @@ import { ChartsModule } from 'ng2-charts';
 
 
 // MATERIAL IMPORTS
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
@@ -51,6 +53,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UpcomingComponent } from './component/home/upcoming/upcoming.component';
 import { NearbyComponent } from './component/home/nearby/nearby.component';
+import { OwnerRegisterComponent } from './component/about/owner-register/owner-register.component';
+import { PropertyRegisterComponent } from './component/property-register/property-register.component';
+import { UploadImageComponent } from './component/upload-image/upload-image.component';
+import { OwnedPropertiesComponent } from './component/profile/owned-properties/owned-properties.component';
+import { MatListModule } from '@angular/material/list';
+import { OwnerGuardGuard } from './owner-guard.guard';
+import { NotificationComponent } from './component/notification/notification.component';
+import { NotificationService } from './services/notification.service';
 
 
 
@@ -79,6 +89,12 @@ import { NearbyComponent } from './component/home/nearby/nearby.component';
     SearchListComponent,
     UpcomingComponent,
     NearbyComponent,
+    OwnerRegisterComponent,
+    PropertyRegisterComponent,
+    UploadImageComponent,
+    OwnedPropertiesComponent,
+    NotificationComponent,
+
 
   ],
   imports: [
@@ -102,13 +118,17 @@ import { NearbyComponent } from './component/home/nearby/nearby.component';
     MatTabsModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule,
+    MatSelectModule,
+    MatListModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }, PropertyService, AuthGuard, UserService],
+  }, PropertyService, AuthGuard, UserService, OwnerGuardGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

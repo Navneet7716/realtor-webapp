@@ -21,6 +21,10 @@ const propertySchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    owner: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
     images: [String],
     coverImage: String,
     createdAt: {
@@ -57,14 +61,14 @@ propertySchema.pre("save", function (next) {
   next();
 });
 
-// propertySchema.pre(/^find/, function (next) {
-//   this.populate({
-//     path: "dealers",
-//     select: "-__v -passwordChangedAt",
-//   });
+propertySchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "owner",
+    select: "-__v -passwordChangedAt",
+  });
 
-//   next();
-// });
+  next();
+});
 
 const Property = mongoose.model("Property", propertySchema);
 

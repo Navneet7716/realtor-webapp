@@ -1,7 +1,7 @@
 <div>
     <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
 </div>
-<div style="height: 100vh;">
+<div style="height: auto">
 
     <mat-card class="main__card shadow animate__animated animate__fadeInUpBig" >
     
@@ -25,5 +25,22 @@
     
     
     </div>
+    
     </mat-card>
+    <mat-card class="mt-3 shadow" *ngIf="isOwner">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Owned Properties
+              </mat-panel-title>
+              <mat-panel-description>
+                You currently have {{ ownedProperties.length }} properties
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-owned-properties [parentData]="ownedProperties"></app-owned-properties>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card>
+    
 </div>

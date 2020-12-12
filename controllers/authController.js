@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const Email = require("../utils/email");
 
-const signToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+const signToken = (id, role) => {
+  return jwt.sign({ id, role }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
 const createSendToken = (user, statusCode, res) => {
-  const token = signToken(user._id);
+  const token = signToken(user._id, user.role);
 
   const cookieOptions = {
     expires: new Date(
@@ -235,6 +235,17 @@ exports.updatePassword = async (req, res, next) => {
       status: "Error",
       message: "Something Went Wrong",
     });
+  }
+};
+
+exports.signupOwner = async (req, res, next) => {
+  try {
+    const newUser = await User.create(req.body);
+    const url = ``;
+    await new Email(newUser, url).sendWelcome();
+    createSendToken(newUser, 201, res);
+  } catch (err) {
+    console.log(err);
   }
 };
 

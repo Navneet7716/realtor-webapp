@@ -1,4 +1,57 @@
 const Property = require("../models/propertyModel");
+const multer = require("multer");
+const sharp = require("sharp");
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new AppError("Not an Image! Please upload only images", 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadPropertyImages = upload.fields([
+  { name: "coverImage", maxCount: 1 },
+  { name: "images", maxCount: 3 },
+]);
+
+exports.resizePropertyImages = async (req, res, next) => {
+  try {
+  } catch (err) {}
+  if (!req.files.coverImage || !req.files.images) return next();
+
+  req.body.coverImage = `property-${Date.now()}-cover.webp`;
+  await sharp(req.files.coverImage[0].buffer)
+    .resize(2000, 1333)
+    .toFormat("webp")
+    .webp({ quality: 90 })
+    .toFile(`client-side/src/assets/images/property/${req.body.coverImage}`);
+
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, i) => {
+      const filename = `property-${Date.now()}-${i + 1}.webp`;
+
+      await sharp(file.buffer)
+        .resize(2000, 1333)
+        .toFormat("webp")
+        .webp({ quality: 90 })
+        .toFile(`client-side/src/assets/images/property/${filename}`);
+
+      req.body.images.push(filename);
+    })
+  );
+
+  next();
+};
 
 exports.getAllProperties = async (req, res, next) => {
   try {
@@ -150,4 +203,24 @@ exports.getDistance = async (req, res, next) => {
       message: "Some Error Occured 🤖.",
     });
   }
+};
+
+exports.updateOne = async (req, res) => {
+  const doc = await Property.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!doc) {
+    res.status(404).json({
+      status: "Error",
+      message: "No document Found With that ID",
+    });
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      doc,
+    },
+  });
 };

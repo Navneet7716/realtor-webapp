@@ -34,7 +34,16 @@
             <h1 style="text-align: center;padding: 2%;">Address: {{ propertyData.address }}</h1>
         </mat-card>
     </mat-tab>
-   
+    <mat-tab label="Owner Contact info">
+        <mat-card class="shadow mt-3" style="margin: 2%;">
+            <h1 style="text-align: center;padding: 2%;">Click here to request for the owners contact info. If he is interested he will mail you back</h1>
+            <div style="text-align: center;">
+              <button mat-raised-button color="primary" (click)="requestContact()">Click here to Request</button>
+
+            </div>
+        </mat-card>
+    </mat-tab>
+
   </mat-tab-group>
 
   <mat-card class="shadow mt-3 map" style="margin: 2%;">
