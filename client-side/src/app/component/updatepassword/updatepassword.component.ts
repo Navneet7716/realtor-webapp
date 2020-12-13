@@ -37,7 +37,7 @@ export class UpdatepasswordComponent implements OnInit {
       err => {
         if (err) {
 
-          console.log(err)
+          // console.log(err)
           this.errorMsg = err.error.message;
 
         }

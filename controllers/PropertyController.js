@@ -1,6 +1,13 @@
 const Property = require("../models/propertyModel");
 const multer = require("multer");
 const sharp = require("sharp");
+const aws = require("aws-sdk");
+const User = require("../models/userModel");
+
+const s3 = new aws.S3({
+  accessKeyId: "AKIAIN2MIPX5ZHMYBVVA",
+  secretAccessKey: "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",
+});
 
 const multerStorage = multer.memoryStorage();
 
@@ -23,28 +30,56 @@ exports.uploadPropertyImages = upload.fields([
 ]);
 
 exports.resizePropertyImages = async (req, res, next) => {
-  try {
-  } catch (err) {}
-  if (!req.files.coverImage || !req.files.images) return next();
+  // try {
+  // } catch (err) {}
 
+  if (!req.files.coverImage || !req.files.images) return next();
   req.body.coverImage = `property-${Date.now()}-cover.webp`;
+  let params = {
+    Bucket: "realtor-7715",
+    Key: req.body.coverImage,
+    Body: req.files.coverImage[0].buffer,
+  };
   await sharp(req.files.coverImage[0].buffer)
     .resize(2000, 1333)
     .toFormat("webp")
     .webp({ quality: 90 })
-    .toFile(`client-side/src/assets/images/property/${req.body.coverImage}`);
+    .toBuffer()
+    .then((buffer) => {
+      params.Body = buffer;
+      params.Key = req.body.coverImage;
+      s3.upload(params, (error, data) => {
+        if (error) {
+          res.status(500).send(error);
+        }
+
+        console.log(data.Location);
+      });
+    });
 
   req.body.images = [];
 
   await Promise.all(
     req.files.images.map(async (file, i) => {
-      const filename = `property-${Date.now()}-${i + 1}.webp`;
+      let filename = `property-${Date.now()}-${i + 1}.webp`;
 
       await sharp(file.buffer)
         .resize(2000, 1333)
         .toFormat("webp")
         .webp({ quality: 90 })
-        .toFile(`client-side/src/assets/images/property/${filename}`);
+        .toBuffer()
+        .then((buffer) => {
+          params.Body = buffer;
+
+          params.Key = filename;
+          s3.upload(params, (error, data) => {
+            if (error) {
+              res.status(500).send(error);
+            }
+
+            console.log(data.Location);
+          });
+        });
 
       req.body.images.push(filename);
     })
@@ -106,6 +141,21 @@ exports.getOneProperty = async (req, res, next) => {
 exports.insertOneProperty = async (req, res, next) => {
   try {
     const doc = await Property.create(req.body);
+
+    // get the user first
+    console.log(doc._id);
+    console.log("running");
+    console.log(req.user);
+
+    let ownedProperties = req.user.ownedProperties;
+
+    ownedProperties.push(doc._id);
+
+    // console.log(ownedProperties.toString());
+
+    const newdocUser = await User.findByIdAndUpdate(req.user._id, {
+      ownedProperties,
+    });
 
     res.status(201).json({
       status: "Success",
@@ -206,10 +256,14 @@ exports.getDistance = async (req, res, next) => {
 };
 
 exports.updateOne = async (req, res) => {
+  ownedProperties = req.user.ownedProperties.push(req.params.id);
+  req.body.owner = req.user._id;
   const doc = await Property.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
+
+  const doc1 = await User.findByIdAndUpdate(req.user._id, ownedProperties);
 
   if (!doc) {
     res.status(404).json({

@@ -7,7 +7,7 @@ const router = express.Router();
 router
   .route("/")
   .get(PropertyController.getAllProperties)
-  .post(PropertyController.insertOneProperty);
+  .post(AuthController.protect, PropertyController.insertOneProperty);
 
 router.route("/:slugId").get(PropertyController.getOneProperty);
 // router
@@ -17,6 +17,7 @@ router.route("/:slugId").get(PropertyController.getOneProperty);
 router
   .route("/uploadImage/:id")
   .post(
+    AuthController.protect,
     PropertyController.uploadPropertyImages,
     PropertyController.resizePropertyImages,
     PropertyController.updateOne
@@ -28,4 +29,5 @@ router
 router
   .route("/properties-within/:distance/center/:latlng/unit/:unit")
   .get(PropertyController.getPropertiesWithin);
+
 module.exports = router;

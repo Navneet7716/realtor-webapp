@@ -17,7 +17,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllNotifications().subscribe(el => {
       this.allNotification = el.data;
-      console.log(el)
+      // console.log(el)
     })
   }
   acceptNoti(id, email, name) {

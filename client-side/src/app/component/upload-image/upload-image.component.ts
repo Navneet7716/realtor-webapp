@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-upload-image',
@@ -10,12 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 export class UploadImageComponent implements OnInit {
   id: string;
 
+  isEnabled: boolean = true;
+
   selectedFile: File
   selectedFile1: File
   selectedFile2: File
   selectedFile3: File
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private mt: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id
@@ -39,6 +42,7 @@ export class UploadImageComponent implements OnInit {
   }
 
   onUpload() {
+    this.isEnabled = false
     const uploadData = new FormData();
     uploadData.append('coverImage', this.selectedFile, this.selectedFile.name);
     uploadData.append('images', this.selectedFile1, this.selectedFile1.name);
@@ -50,7 +54,10 @@ export class UploadImageComponent implements OnInit {
       observe: 'events'
     })
       .subscribe(el => {
-        console.log(el)
+        this.mt.open('Images Uploaded Successfully!!', 'OK', {
+          duration: 4000,
+        });
+        this.router.navigate([`/profile`]);
       });
   }
 

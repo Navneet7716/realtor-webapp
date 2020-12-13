@@ -8,7 +8,7 @@
 <h1 style="text-align: center;font-style: italic;">"<span style="text-decoration: underline;">{{propertyData.name}}</span>"</h1>
 
 <div class="container2" > 
-    <img *ngFor="let item of propertyData.images" src="../../../assets/images/property/{{item.split('.')[0]}}.webp" class="detail-card ">
+    <img *ngFor="let item of propertyData.images" class="detail-card " src="https://realtor-7715.s3.amazonaws.com/{{item.split('.')[0]}}.webp">
 </div>
 
 <mat-tab-group mat-align-tabs="center" style="margin-top: 30px;">
@@ -35,13 +35,22 @@
         </mat-card>
     </mat-tab>
     <mat-tab label="Owner Contact info">
+      <ng-container *ngIf="ownerId === userId; else elseTemplate">
         <mat-card class="shadow mt-3" style="margin: 2%;">
-            <h1 style="text-align: center;padding: 2%;">Click here to request for the owners contact info. If he is interested he will mail you back</h1>
-            <div style="text-align: center;">
-              <button mat-raised-button color="primary" (click)="requestContact()">Click here to Request</button>
-
-            </div>
+          <h1 style="text-align: center;padding: 2%;">You Are yourself the owner</h1>
         </mat-card>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-card class="shadow mt-3" style="margin: 2%;" >
+          <h1 style="text-align: center;padding: 2%;">Click here to request for the owners contact info. If he is interested he will mail you back</h1>
+          <div style="text-align: center;">
+            <button mat-raised-button color="primary" (click)="requestContact()" [disabled]="!isEnabled">Click here to Request</button>
+
+          </div>
+      </mat-card>
+      </ng-template>
+      
+       
     </mat-tab>
 
   </mat-tab-group>

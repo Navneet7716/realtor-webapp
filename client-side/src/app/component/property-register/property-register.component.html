@@ -76,7 +76,7 @@
                             <input matInput placeholder="Area (ex 250-1200 sqft)" formControlName="area">
                     </mat-form-field>
                 </div>
-                <button mat-raised-button color="primary" type="submit">Submit</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!isEnabled">Submit</button>
                 <div *ngIf="errormessage !== ''" class="alert alert-danger mt-3">{{ errormessage }}</div>
             </form>
         </div>

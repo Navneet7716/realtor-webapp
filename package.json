@@ -8,6 +8,7 @@
     "start:prod": "SET NODE_ENV=production&& nodemon server.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.809.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",

@@ -17,6 +17,10 @@ export class PropertyRegisterComponent implements OnInit {
   errormessage: string = "";
   constructor(private _formBuilder: FormBuilder, private cd: ChangeDetectorRef, private service: PropertyService, private userservice: UserService, private router: Router, private snackBar: MatSnackBar) { }
 
+  ownedProperties: [string];
+
+  isEnabled: boolean = true;
+
   userId: string = ""
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -33,11 +37,13 @@ export class PropertyRegisterComponent implements OnInit {
 
     this.userservice.getAUser().subscribe(el => {
       this.userId = el.data.id;
+      this.ownedProperties = el.data.ownedProperties
     })
   }
 
 
   onSubmit() {
+    this.isEnabled = false
     let property = {
       location: { coordinates: [this.firstFormGroup.value.longitude, this.firstFormGroup.value.latitude] },
       address: this.firstFormGroup.value.address,
@@ -61,9 +67,9 @@ export class PropertyRegisterComponent implements OnInit {
     this.service.insertProperty(property).subscribe(el => {
       if (el['status'] === 200 || el['status'] === 'Success') {
 
-        console.log(el)
-        this.snackBar.open('Property is Successfully Submitted !!', 'OK', {
-          duration: 3000,
+        // console.log(el)
+        this.snackBar.open('Property is Successfully Submitted !! But Please Upload the Images also', 'OK', {
+          duration: 4000,
         });
         this.router.navigate([`/uploadImage/${el.data._id}`]);
       }

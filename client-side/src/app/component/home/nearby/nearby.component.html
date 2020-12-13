@@ -13,7 +13,7 @@
           <mat-card-title>{{ item.name }}</mat-card-title>
           <mat-card-subtitle>{{item.address }} </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{imgurl}}{{ item.coverImage.split('.')[0] }}.webp"  alt="{{ item.name }}">
+        <img mat-card-image src="https://realtor-7715.s3.amazonaws.com/{{ item.coverImage.split('.')[0] }}.webp"  alt="{{ item.name }}">
         <mat-card-content>
           <p>
             {{ item.description.slice(0, 140)}}<span>... (Click on details to view more)</span>
