@@ -5,8 +5,8 @@ const aws = require("aws-sdk");
 const User = require("../models/userModel");
 
 const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET,
+  accessKeyId: "AKIAIN2MIPX5ZHMYBVVA",
+  secretAccessKey: "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",
 });
 
 const multerStorage = multer.memoryStorage();
@@ -36,7 +36,7 @@ exports.resizePropertyImages = async (req, res, next) => {
   if (!req.files.coverImage || !req.files.images) return next();
   req.body.coverImage = `property-${Date.now()}-cover.webp`;
   let params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
+    Bucket: "realtor-7715",
     Key: req.body.coverImage,
     Body: req.files.coverImage[0].buffer,
   };
@@ -50,7 +50,7 @@ exports.resizePropertyImages = async (req, res, next) => {
       params.Key = req.body.coverImage;
       s3.upload(params, (error, data) => {
         if (error) {
-          res.status(500).send(error);
+          console.log(error);
         }
 
         // console.log(data.Location);
@@ -74,7 +74,7 @@ exports.resizePropertyImages = async (req, res, next) => {
           params.Key = filename;
           s3.upload(params, (error, data) => {
             if (error) {
-              res.status(500).send(error);
+              console.log(error);
             }
 
             // console.log(data.Location);
