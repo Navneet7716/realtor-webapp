@@ -49,7 +49,7 @@ export class UploadImageComponent implements OnInit {
     uploadData.append('images', this.selectedFile2, this.selectedFile2.name);
     uploadData.append('images', this.selectedFile3, this.selectedFile3.name);
 
-    this.http.post(`http://localhost:4000/api/v1/properties/uploadImage/${this.id}`, uploadData, {
+    this.http.post(`/api/v1/properties/uploadImage/${this.id}`, uploadData, {
       reportProgress: true,
       observe: 'events'
     })
