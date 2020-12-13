@@ -53,7 +53,7 @@ exports.resizePropertyImages = async (req, res, next) => {
           res.status(500).send(error);
         }
 
-        console.log(data.Location);
+        // console.log(data.Location);
       });
     });
 
@@ -77,7 +77,7 @@ exports.resizePropertyImages = async (req, res, next) => {
               res.status(500).send(error);
             }
 
-            console.log(data.Location);
+            // console.log(data.Location);
           });
         });
 
@@ -143,9 +143,9 @@ exports.insertOneProperty = async (req, res, next) => {
     const doc = await Property.create(req.body);
 
     // get the user first
-    console.log(doc._id);
-    console.log("running");
-    console.log(req.user);
+    // console.log(doc._id);
+    // console.log("running");
+    // console.log(req.user);
 
     let ownedProperties = req.user.ownedProperties;
 
