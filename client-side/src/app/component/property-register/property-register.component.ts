@@ -23,6 +23,7 @@ export class PropertyRegisterComponent implements OnInit {
 
   userId: string = ""
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     this.firstFormGroup = this._formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
