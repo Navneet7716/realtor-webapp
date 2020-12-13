@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -41,6 +41,8 @@ export class UploadImageComponent implements OnInit {
 
   }
 
+  progress: number = 0;
+
   onUpload() {
     this.isEnabled = false
     const uploadData = new FormData();
@@ -49,15 +51,38 @@ export class UploadImageComponent implements OnInit {
     uploadData.append('images', this.selectedFile2, this.selectedFile2.name);
     uploadData.append('images', this.selectedFile3, this.selectedFile3.name);
 
-    this.http.post(`/api/v1/properties/uploadImage/${this.id}`, uploadData, {
+    this.http.post(`http://localhost:4000/api/v1/properties/uploadImage/${this.id}`, uploadData, {
       reportProgress: true,
       observe: 'events'
     })
-      .subscribe(el => {
-        this.mt.open('Images Uploaded Successfully!!', 'OK', {
-          duration: 4000,
+      .subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            // console.log('Request has been made!');
+            break;
+          case HttpEventType.ResponseHeader:
+            // console.log('Response header has been received!');
+            break;
+          case HttpEventType.UploadProgress:
+            this.progress = Math.round(event.loaded / event.total * 100);
+            // console.log(`Uploaded! ${this.progress}%`);
+            break;
+          case HttpEventType.Response:
+            // console.log('Image successfully uploaded!', event.body);
+            setTimeout(() => {
+              this.progress = 0;
+            }, 2500);
+            break;
+
+        }
+        this.mt.open('Uploaded Images SuccessFull !!', 'OK', {
+          duration: 3000,
         });
-        this.router.navigate([`/profile`]);
+
+        setTimeout(() => {
+          this.router.navigate(['/profile']);
+        }, 3000)
+
       });
   }
 

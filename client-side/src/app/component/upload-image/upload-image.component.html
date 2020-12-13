@@ -26,5 +26,12 @@
                         <input class="form-control" type="file" id="formFile" (change)="onFileChanged3($event)">
                     </div>
                     <button (click)="onUpload()"  class="btn btn-info">Upload!</button>
+
+                    <div class="progress m-3" *ngIf="progress > 0">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" [style.width.%]="progress">
+                        </div>
+                    </div>
+
                 </mat-card>
+               
             </mat-card>

@@ -40,7 +40,7 @@
               </mat-form-field>
           </div>
           <div>
-              <button mat-raised-button type="submit" color="primary" [disabled]="name.value == '' || email.value == '' || pass.value == '' || passconf.value == '' || nu.value == '' || pass.value !== passconf.value || pass.value.length < 8" >Submit</button>
+              <button mat-raised-button type="submit" color="primary" [disabled]="name.value == '' || email.value == '' || pass.value == '' || passconf.value == '' || nu.value == '' || pass.value !== passconf.value || pass.value.length < 8 || showSpinner" ><span *ngIf="showSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Submit</button>
              </div>
         </form>
   

@@ -30,7 +30,7 @@
             </mat-form-field>
         </div>
         <div>
-            <button mat-raised-button type="submit" color="primary" [disabled]="name.value == '' || email.value == '' || nu.value== ''" >Update</button>
+            <button mat-raised-button type="submit" color="primary" [disabled]="name.value == '' || email.value == '' || nu.value== '' || spin" ><span *ngIf="spin" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Update</button>
            </div>
       </form>
 

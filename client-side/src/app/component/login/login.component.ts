@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  showSpinner
 
   user = {
     email: '',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   FormSubmit(e) {
     e.preventDefault();
+    this.showSpinner = true
     this.service.login(this.user.email, this.user.password).subscribe(
       (el) => {
         this.service.setToken(el['token']);
@@ -31,7 +33,10 @@ export class LoginComponent implements OnInit {
           this.snackBar.open('Login SuccessFull !!', 'OK', {
             duration: 3000,
           });
-          this.router.navigate(['/profile']);
+          this.showSpinner = false
+          setTimeout(() => {
+            this.router.navigate(['/profile']);
+          }, 1000)
         }
       },
       (err) => {

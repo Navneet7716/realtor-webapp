@@ -14,6 +14,8 @@ export class UpdateuserComponent implements OnInit {
 
   public errorMsg
   showSpinner = true
+
+  spin: boolean
   constructor(public service: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class UpdateuserComponent implements OnInit {
 
   FormSubmit(e) {
     e.preventDefault();
+    this.spin = true
 
     this.updateUser = {
       name: this.user.name,
@@ -34,6 +37,7 @@ export class UpdateuserComponent implements OnInit {
     }
     this.service.updateUser(this.updateUser).subscribe(el => {
       if (el['status'] === 200 || el['status'] === 'success') {
+        this.spin = false
         this.router.navigate(['/profile']);
       }
       else {

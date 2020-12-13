@@ -1,3 +1,7 @@
+<div>
+  <mat-progress-bar *ngIf="showSpin" mode="indeterminate"></mat-progress-bar>
+</div>
+
 <mat-card>
     <mat-card style="text-align: center; font-size: 1.2rem;" class="mb-3 shadow"><p>Your Notifications ({{ allNotification.length }})</p></mat-card>
     <div class="card mb-3 shadow" style="max-width: auto; height: auto; text-align: center;" *ngFor="let item of allNotification">
@@ -8,8 +12,8 @@
               <p class="card-text"> 
               If you Click on the accept button then we will send an email to the user having your contact email and phone number Otherwise you may decline. Or you could contact him directly thorough his email: {{item.requestedBy.email}} or phone: {{ item.requestedBy.phone }}
               </p>
-              <button mat-raised-button color="primary" (click)="acceptNoti(item._id, item.requestedBy.email, item.requestedBy.name)"><small>Accept</small></button>
-              <button mat-raised-button color="warn" (click)="declineNoti(item._id, item.requestedBy.email, item.requestedBy.name)"><small>Decline</small></button>
+              <button mat-raised-button color="primary" (click)="acceptNoti(item._id, item.requestedBy.email, item.requestedBy.name)" [disabled]="spin"><span *ngIf="spin" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><small>Accept</small></button>
+              <button mat-raised-button color="warn" (click)="declineNoti(item._id, item.requestedBy.email, item.requestedBy.name)" [disabled]="dspin"><span *ngIf="dspin" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><small>Decline</small></button>
             </div>
           </div>
         </div>

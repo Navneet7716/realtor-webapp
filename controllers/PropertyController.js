@@ -206,6 +206,30 @@ exports.getPropertiesWithin = async (req, res, next) => {
   }
 };
 
+exports.updateOne = async (req, res) => {
+  ownedProperties = req.user.ownedProperties.push(req.params.id);
+  req.body.owner = req.user._id;
+  const doc = await Property.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  const doc1 = await User.findByIdAndUpdate(req.user._id, ownedProperties);
+
+  if (!doc) {
+    res.status(404).json({
+      status: "Error",
+      message: "No document Found With that ID",
+    });
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      doc,
+    },
+  });
+};
+
 exports.getDistance = async (req, res, next) => {
   const { latlng, unit } = req.params;
   const [lat, lng] = latlng.split(",");
@@ -253,28 +277,4 @@ exports.getDistance = async (req, res, next) => {
       message: "Some Error Occured 🤖.",
     });
   }
-};
-
-exports.updateOne = async (req, res) => {
-  ownedProperties = req.user.ownedProperties.push(req.params.id);
-  req.body.owner = req.user._id;
-  const doc = await Property.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
-
-  const doc1 = await User.findByIdAndUpdate(req.user._id, ownedProperties);
-
-  if (!doc) {
-    res.status(404).json({
-      status: "Error",
-      message: "No document Found With that ID",
-    });
-  }
-  res.status(200).json({
-    status: "success",
-    data: {
-      doc,
-    },
-  });
 };

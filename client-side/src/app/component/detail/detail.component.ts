@@ -27,6 +27,7 @@ export class DetailComponent implements OnInit {
     public us: UserService,
     private mt: MatSnackBar) { }
   showSpinner: boolean = true;
+  isSpin: boolean = false
   ngOnInit(): void {
     // window.scroll({
     //   top: 0,
@@ -51,11 +52,13 @@ export class DetailComponent implements OnInit {
 
   requestContact() {
     this.isEnabled = false
+    this.isSpin = !this.isSpin
     this.nt.createNotification(this.ownerId).subscribe(el => {
       // console.log(el)
       this.mt.open(`Requested Successfull! ${el.message}`, 'OK', {
         duration: 6000,
       });
+      this.isSpin = !this.isSpin
     }, err => {
       this.mt.open(`Request Unsuccessfull! ${err.message}`, 'OK', {
         duration: 6000,

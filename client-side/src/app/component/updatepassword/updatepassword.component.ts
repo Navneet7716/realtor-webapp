@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class UpdatepasswordComponent implements OnInit {
 
+  showSpinner: boolean
+
   public user = {
     passwordCurrent: '',
     password: '',
@@ -25,11 +27,13 @@ export class UpdatepasswordComponent implements OnInit {
 
   FormSubmit(e) {
     e.preventDefault();
+    this.showSpinner = true
 
     this.service.updatePassword(this.user).subscribe(el => {
       if (el['status'] === 200 || el['status'] === 'success') {
         this.service.setToken(el['token']);
         alert('Password Updated!!');
+        this.showSpinner = false;
         this.router.navigate(['/profile']);
       }
 
