@@ -106,12 +106,12 @@ exports.getMe = async (req, res, next) => {
         status: "Error",
         message: "Cannot get the user!",
       });
+    } else {
+      res.status(200).json({
+        status: "success",
+        data: user,
+      });
     }
-
-    res.status(200).json({
-      status: "success",
-      data: user,
-    });
   } catch (err) {
     res.status(404).json({
       status: "Error",

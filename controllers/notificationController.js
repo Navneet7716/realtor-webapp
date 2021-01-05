@@ -83,10 +83,18 @@ exports.getAllNotifications = async (req, res) => {
   try {
     const userId = req.user._id;
     const data = await Notification.find({ userId, pending: true });
-    res.status(200).json({
-      status: "Success",
-      data,
-    });
+
+    if (data) {
+      res.status(200).json({
+        status: "Success",
+        data,
+      });
+    } else {
+      res.status(200).json({
+        status: "Success",
+        message: "No notifications",
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(400).json({

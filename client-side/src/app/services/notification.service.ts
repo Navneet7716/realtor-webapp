@@ -10,7 +10,7 @@ export class NotificationService {
   constructor(private http: HttpClient) { }
 
 
-  url = ""
+  url = "http://localhost:4000"
 
   getAllNotifications(): Observable<any> {
     return this.http.get(this.url + "/api/v1/notification/getNotification")
