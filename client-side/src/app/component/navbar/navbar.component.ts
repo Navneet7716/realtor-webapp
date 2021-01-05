@@ -25,6 +25,11 @@ export class NavbarComponent implements OnInit {
 
   Logout() {
     this.service.deleteToken();
+    this.service.logout().subscribe(el => {
+      if (el.message === "Logged Out") {
+        alert("Logged out!")
+      }
+    })
   }
 
 }

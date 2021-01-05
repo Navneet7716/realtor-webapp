@@ -102,10 +102,7 @@ exports.getMe = async (req, res, next) => {
     });
 
     if (!user) {
-      res.status(404).json({
-        status: "Error",
-        message: "Cannot get the user!",
-      });
+      new Error("Cannot get User");
     } else {
       res.status(200).json({
         status: "success",
