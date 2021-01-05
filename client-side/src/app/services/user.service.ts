@@ -41,9 +41,16 @@ export class UserService {
 
   getUserPayload() {
     let token = this.getToken()
+
     if (token) {
-      const userPayload = atob(token.split('.')[1]);
-      return JSON.parse(userPayload);
+      try {
+        const userPayload = atob(token.split('.')[1]);
+        return JSON.parse(userPayload);
+      } catch (error) {
+        return null;
+      }
+
+
     }
     else {
       return null;
