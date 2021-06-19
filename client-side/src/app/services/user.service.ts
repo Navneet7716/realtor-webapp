@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,16 @@ export class UserService {
 
   getUserPayload() {
     let token = this.getToken()
+
     if (token) {
-      const userPayload = atob(token.split('.')[1]);
-      return JSON.parse(userPayload);
+      try {
+        const userPayload = atob(token.split('.')[1]);
+        return JSON.parse(userPayload);
+      } catch (error) {
+        return null;
+      }
+
+
     }
     else {
       return null;
@@ -98,6 +106,9 @@ export class UserService {
     return this.http.patch(`http://localhost:4000/api/v1/users/resetPassword/${token}`, { password: user.password, passwordConfirm: user.passwordConfirm }, this.noAuthHeader)
   }
 
+  logout(): Observable<any> {
+    return this.http.get<any>(`/api/v1/users/logout`);
+  }
 
 
 }

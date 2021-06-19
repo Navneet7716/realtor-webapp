@@ -14,17 +14,27 @@ export class NavbarComponent implements OnInit {
   oLength: number = 0
 
   ngOnInit(): void {
-    this.nservice.getAllNotifications().subscribe(el => {
+
+    let log = this.service.isLoggedin()
+    if (log) {
+
+      this.nservice.getAllNotifications().subscribe(el => {
 
 
-      if (el.data.length > 0)
-        this.oLength = el.data.length;
+        if (el.data.length > 0)
+          this.oLength = el.data.length;
 
-    })
+      })
+    }
   }
 
   Logout() {
     this.service.deleteToken();
+    this.service.logout().subscribe(el => {
+      if (el.message === "Logged Out") {
+        alert("Logged out!")
+      }
+    })
   }
 
 }
