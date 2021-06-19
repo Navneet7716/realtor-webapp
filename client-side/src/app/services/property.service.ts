@@ -11,7 +11,7 @@ export class PropertyService {
 
   constructor(private http: HttpClient) { }
 
-  url = ""
+  url = "http://localhost:4000"
 
 
   getAllProperties(): Observable<any> {
